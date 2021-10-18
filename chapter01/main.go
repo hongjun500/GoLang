@@ -4,6 +4,7 @@ package main
 // 单个导入依赖包
 import (
 	"fmt"
+	"math/cmplx"
 )
 
 // 分组导入多个(推荐)
@@ -54,6 +55,30 @@ func main() {
 	var x, y int = 3, 4
 	var f float64 = math.Sqrt(float64(x*x + y*y))
 	var z uint = uint(f)
-	fmt.Printf("\nx,y,f,z的值%v,%v,%v,%v", x, y, f, z)
+	fmt.Printf("\nx,y,f,z的值%v,%v,%v,%v \n", x, y, f, z)
+
+	euler := 3 + 4i
+	abs := cmplx.Abs(euler)
+	fmt.Println("abs=", abs)
+
+	const (
+		java = iota
+		golang
+		python
+		php
+		javascript
+	)
+	// 可以用此方法定义“枚举类”
+	const (
+		b = 1 << (10 * iota)
+		kb
+		mb
+		gb
+		tp
+		pb
+	)
+
+	fmt.Println(java, golang, python, php, javascript)
+	fmt.Println(b, kb, mb, gb, tp, pb)
 
 }
