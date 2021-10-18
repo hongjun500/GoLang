@@ -25,3 +25,4 @@
        - map的遍历可以使用for循环加上range关键字
        - map删除元素可以使用内置函数delete(m map[Type]Type1, key Type),并且如果key不存在也不会有问题(排除极端情况)
      - sync.Map
+        > 此map的操作都是基于自带函数
