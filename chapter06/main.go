@@ -1,6 +1,10 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+	"runtime"
+)
 
 const GO_LANG = "GOlANG"
 
@@ -56,6 +60,13 @@ func main() {
 
 	strWord = "hello goLang"             // 这里改变了变量strWord的值，内存地址并没有改变
 	fmt.Printf("strWord=%v \n", strWord) // 这里执行完之后匿名函数开始调用，记录的strWord的值就是改变之后的值
+
+	// 函数式编程 (打印出main.div)
+	fmt.Println(func_div(div, 100, 2))
+	// 匿名函数， 打印出main.main.func(随机数命名值)
+	fmt.Println(func_div(func(i int, i2 int) (int, int) {
+		return i / i2, i % i2
+	}, 100, 2))
 }
 
 // 函数关键字func 函数名pring, 入参为一个string类型，无返回值
@@ -106,4 +117,15 @@ func moreReturnV1(x, y, z int) (int, int, string) {
 	a := x + y + z
 	b := x * y * z
 	return a, b, "string"
+}
+
+func div(a, b int) (int, int) {
+	return a / b, a % b
+}
+
+func func_div(fc func(int, int) (int, int), c, d int) (int, int) {
+	pointer := reflect.ValueOf(fc).Pointer()
+	funcName := runtime.FuncForPC(pointer).Name()
+	fmt.Printf("funcation with %s \n args=%d, \n args=%d \n", funcName, c, d)
+	return fc(c, d)
 }
