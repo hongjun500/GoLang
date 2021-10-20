@@ -80,5 +80,32 @@ func main() {
 
 	fmt.Println(java, golang, python, php, javascript)
 	fmt.Println(b, kb, mb, gb, tp, pb)
+	// iota关键字，iota初始值=0，每出现一次iota关键字直到下一个const关键字出现前iota都会都会自增1
+	const (
+		c0 = iota // c0=0
+		c1 = iota // c1=1
+		c2 = iota // c2=2
+	)
+	fmt.Println(c0, c1, c2)
+	// 效果同上
+	const (
+		c3 = iota
+		c4 // 省略了=iota
+		c5 // 省略了=iota
+	)
+	fmt.Println(c3, c4, c5)
 
+	str := "Hello, 世界"
+	n := len(str)
+	for i := 0; i < n; i++ {
+		ch := str[i]
+		fmt.Printf("%v , %c", i, ch)
+	}
+	fmt.Println("-----------------------")
+	str = "Hello, word"
+	n = len(str)
+	for i := 0; i < n; i++ {
+		ch := str[i]
+		fmt.Println(i, ch)
+	}
 }

@@ -124,6 +124,9 @@ func main() {
 	fmt.Println("\n")
 	fmt.Println(c())
 
+
+	myfunc()
+
 }
 
 /**
@@ -226,4 +229,16 @@ func b() {
 func c() (i int) {
 	defer func() { i++ }()
 	return 1
+}
+
+func myfunc() {
+	fmt.Println("---------------------")
+	i := 0
+HERE:
+	fmt.Println(i) // i = 0 打印出0
+	i++            // 此时 i = 1
+	if i < 10 {    // i = 1会进入此判断结构体
+		// 跳到HERE	标签处，执行打印，程序会接着执行i++,又进入条件判断以此类推直到i=10的时候程序运行结束
+		goto HERE
+	}
 }
