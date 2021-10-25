@@ -26,6 +26,34 @@ func main() {
 	}
 	fmt.Println("i值", i)
 
+	fmt.Println("分割线-------------------------------------")
+
+	// break关键字可以结束其所在循环结构体的执行（这个示例会打印出10个0123）
+	for i := 0; i < 10; i++ {
+		for i := 0; i < 10; i++ {
+			if i == 4 {
+				break
+				// 如果满足了i==0时就会跳出这个里面的这个循环
+			}
+			fmt.Print(i)
+		}
+		fmt.Println("\n")
+	}
+	fmt.Println("分割线-------------------------------------")
+
+	// continue关键字可以结束条件判断其所在循环的执行（这个示例会打印出10个012356789）
+	for i := 0; i < 10; i++ {
+		for i := 0; i < 10; i++ {
+			if i == 4 {
+				continue
+				// 如果满足了i==0时就会跳出这个满足这个条件的循环，而不是循环体
+			}
+			fmt.Print(i)
+		}
+		fmt.Println("\n")
+	}
+	fmt.Println("分割线-------------------------------------")
+
 	sum = 0
 	for i < 100 {
 		sum = sum + i
@@ -33,6 +61,7 @@ func main() {
 	}
 	fmt.Println("更改后i值", sum)
 
+	// 下例类似于java中的while
 	a := 0
 	for a < 10 {
 		// if语句不需要小括号，必需大括号，类似for
@@ -95,7 +124,9 @@ func main() {
 	fmt.Println("\n")
 	fmt.Println(c())
 
+
 	myfunc()
+
 }
 
 /**
