@@ -67,6 +67,11 @@ func main() {
 	fmt.Println(func_div(func(i int, i2 int) (int, int) {
 		return i / i2, i % i2
 	}, 100, 2))
+
+	argsFunc(1)
+	argsFunc(1, 2)
+	argsFunc(1, 2, 3, -9999)
+
 }
 
 // 函数关键字func 函数名pring, 入参为一个string类型，无返回值
@@ -128,4 +133,14 @@ func func_div(fc func(int, int) (int, int), c, d int) (int, int) {
 	funcName := runtime.FuncForPC(pointer).Name()
 	fmt.Printf("funcation with %s \n args=%d, \n args=%d \n", funcName, c, d)
 	return fc(c, d)
+}
+
+// 可以传入多个参数并且类型都是数值类型
+// argsFunc(1,2)
+// argsFunc(1)
+func argsFunc(args ...int) {
+	fmt.Println("argsFunc函数调用")
+	for _, arg := range args {
+		fmt.Println(arg)
+	}
 }
