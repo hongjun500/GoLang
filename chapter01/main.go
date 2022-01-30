@@ -2,18 +2,17 @@
 package main
 
 // 单个导入依赖包
-import (
-	"fmt"
-	"math/cmplx"
-)
+import "fmt"
+import "math"
 
 // 分组导入多个(推荐)
 import (
-	"math"
+	"math/cmplx"
+	_ "sync"
 	"time"
 )
 
-// var 语句可以出现在包或函数级别
+// var 关键字可以出现在包或函数级别
 // 声明两个string变量
 var java, goLang string = "java", "go"
 
@@ -27,6 +26,10 @@ var (
 	// 浮点类型默认float64
 	price1 float64 = 9.9
 )
+
+type aliasint int
+
+var aliasintvalue aliasint
 
 /**
 主程序
