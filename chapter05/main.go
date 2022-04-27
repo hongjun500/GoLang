@@ -11,8 +11,8 @@ func main() {
 	fmt.Printf("arrArray零值%v \n", arrArray[0][0])
 
 	// 使用三个...来定义数组长度时代表其长度根据数据初始化时的个数来决定
-	// var arrLen = [...]string{"hello"}
-	// fmt.Printf(len(arrLen))  这一行会报错，因为数组长度固定无法求取，除非是切片
+	var arrLen = [...]string{"hello"}
+	fmt.Println("arrLen长度==", len(arrLen))
 
 	// 声明一个名为array类型为int,长度为10的数组
 	var array [10]int
@@ -29,7 +29,7 @@ func main() {
 	if arrSlice == nil {
 		fmt.Println("切片arrSlice是空的")
 	}
-	// arrSlice[0] = "hello"  这一行编译通过，但是运行报错，切片只是声明了但没有初始化
+	// arrSlice[0] = "hello" // 这一行编译通过，但是运行报错，切片只是声明了但没有初始化
 	// 本质上切片的底层实现是一个指向数组的指针，再没有存入一个具体的数组之前，就是nil
 	// arrSlice = []string{""}  直接是以这种方式简单方式就可以使用
 	// 或者通过内置函数make初始化 make([]T,len,cap)
