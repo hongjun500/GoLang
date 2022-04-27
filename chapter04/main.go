@@ -19,11 +19,11 @@ type aliasInt = int
 func main() {
 
 	// 声明一个名为strList类型是stringList的变量
-	// var strList stringList
+	var strList stringList
 
 	// strList = stringList{"1","2"}
 	// 也可以直接
-	strList := stringList{"hello", "go"}
+	//strList := stringList{"hello", "go"}
 	fmt.Println("变量strList的值为", strList)
 	fmt.Printf("变量strList的数据类型为%T", strList)
 	var student struct {

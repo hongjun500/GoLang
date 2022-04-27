@@ -30,11 +30,11 @@ func main() {
 
 	// break关键字可以结束其所在循环结构体的执行（这个示例会打印出10个0123）
 	for i := 0; i < 10; i++ {
+		if i == 4 {
+			break
+			// 如果满足了i==0时就会结束所在的一层循环
+		}
 		for i := 0; i < 10; i++ {
-			if i == 4 {
-				break
-				// 如果满足了i==0时就会跳出这个里面的这个循环
-			}
 			fmt.Print(i)
 		}
 		fmt.Println("\n")
@@ -123,7 +123,6 @@ func main() {
 	b()
 	fmt.Println("\n")
 	fmt.Println(c())
-
 
 	myfunc()
 

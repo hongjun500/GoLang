@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func main() {
 
@@ -45,7 +47,7 @@ func main() {
 
 	for i := 0; i < MAX; i++ {
 		// 取指针arrays所有地址的值
-		fmt.Printf("a[%d]= %d \n", i, *arrays[i])
+		fmt.Printf("arrays[%d]= %d \n", i, *arrays[i])
 	}
 
 	// 指针指向指针示例code
