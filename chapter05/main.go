@@ -34,7 +34,7 @@ func main() {
 	// arrSlice = []string{""}  直接是以这种方式简单方式就可以使用
 	// 或者通过内置函数make初始化 make([]T,len,cap)
 	// 长度必须定义，容量可以省略并且容量必须大于等于长度
-	arrSlice = make([]string, 10, 10)
+	arrSlice = make([]string, 12)
 	arrSlice[0] = "hello"
 	arrSlice[1] = "word"
 	fmt.Printf("切片arrSlice%v \n", arrSlice)

@@ -126,6 +126,18 @@ func main() {
 
 	myfunc()
 
+	var arr []string
+	arr = append(arr, "见到", "你,", "很高兴！")
+	// for的遍历使用关键字 range
+	// 1.只获取下标
+	for key := range arr {
+		fmt.Println(key)
+	}
+	// 2.只获取值
+	for _, value := range arr {
+		fmt.Println(value)
+	}
+
 }
 
 /**

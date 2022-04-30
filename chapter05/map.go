@@ -73,4 +73,18 @@ func maps() {
 		})
 	}*/
 
+	// 定义键和值都是任意类型的map
+	interfaceMap := make(map[interface{}]interface{})
+	interfaceMap[1] = 23
+	interfaceMap["1"] = "字符串1"
+	interfaceMap[true] = 1
+	interfaceMap[false] = 0
+	fmt.Println("---------interfaceMap---------", interfaceMap)
+
+	map2 := map[interface{}]interface{}{}
+	map2["map2"] = "interface"
+	map2[1] = true
+	map2[0] = false
+
+	fmt.Println("---------interfaceMap【map2】---------", map2)
 }
