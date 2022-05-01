@@ -87,4 +87,8 @@ func maps() {
 	map2[0] = false
 
 	fmt.Println("---------interfaceMap【map2】---------", map2)
+
+	for k, v := range interfaceMap {
+		fmt.Println(k, v)
+	}
 }

@@ -69,7 +69,6 @@ func main() {
 	}, 100, 2))
 
 	argsFunc(1)
-	argsFunc(1, 2)
 	argsFunc(1, 2, 3, -9999)
 
 }
@@ -135,10 +134,11 @@ func func_div(fc func(int, int) (int, int), c, d int) (int, int) {
 	return fc(c, d)
 }
 
-// 可以传入多个参数并且类型都是数值类型
+// 不定项参数可以传入多个参数并且类型都是数值类型
 // argsFunc(1,2)
 // argsFunc(1)
 func argsFunc(args ...int) {
+	args = append(args, 1888888)
 	fmt.Println("argsFunc函数调用")
 	for _, arg := range args {
 		fmt.Println(arg)

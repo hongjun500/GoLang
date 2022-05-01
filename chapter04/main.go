@@ -10,6 +10,12 @@ type Vertex struct {
 	Y int
 }
 
+type hongjun struct {
+	Name string
+	age  int
+	sex  bool
+}
+
 // 自定义一个数据类型，数据类型为字符串切片，命名为stringList
 type stringList []string
 
@@ -55,4 +61,31 @@ func main() {
 	user.password = "1"
 	fmt.Printf("%#v \n", user)
 
+	// 使用new 得到的是一个地址
+	hj := new(hongjun)
+	hj.Name = "hongjun500"
+	hj2 := hongjun{
+		Name: "",
+		age:  0,
+		sex:  false,
+	}
+	hj3 := &hj
+	fmt.Println(hj)
+	fmt.Println(hj2)
+	fmt.Println(*hj3)
+
+	fd := hj.getHjer("hongjun502")
+	fd2 := hj.getHjer("hongjun5000")
+	fmt.Println(fd)
+	fmt.Println(fd2)
+
+}
+
+// 声明一个结构体的方法
+func (hj *hongjun) getHjer(name string) (arg string) {
+	return name
+}
+
+func (hj hongjun) getHjer2(age int) hongjun {
+	return hongjun{age: age}
 }
