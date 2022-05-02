@@ -1,6 +1,6 @@
 ### 第三章节
 - 指针
-  - 指针的定义 var varName *varType
+  - \指针的定义 var varName *varType
      > varType可以是指针
      ~~~go
      // 定义了一个名为intPointer类型为int的指针
