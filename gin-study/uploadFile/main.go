@@ -8,7 +8,7 @@ import (
 )
 
 // DST 指定一个上传文件的路径地址
-const DST = "J:\\goProjects\\upload_gofile\\"
+const DST = "D:\\goProjects\\upload_gofile\\"
 
 func main() {
 	router := gin.Default()

@@ -7,7 +7,7 @@ import (
 	"log"
 )
 
-//声明一个数据库句柄
+// 声明一个数据库句柄
 var db *sql.DB
 
 type Album struct {
@@ -73,7 +73,9 @@ func main() {
 		Passwd: "hongjun500",
 		Net:    "tcp",
 		Addr:   "localhost:3306",
-		DBName: "recordings",
+		DBName: "xxl_job",
+		// 允许本地密码认证
+		AllowNativePasswords: true,
 	}
 	var err error
 	db, err = sql.Open("mysql", config.FormatDSN())
