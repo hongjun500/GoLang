@@ -144,7 +144,7 @@ func main() {
 
 	router.GET("/cookie", example.CookieData)
 
-	router.GET("/user/:name", example.GetRouteParam)
+	//router.GET("/user/:name", example.GetRouteParam)
 	// 启动并监听在8086端口上
 	router.Run(":8086")
 }
