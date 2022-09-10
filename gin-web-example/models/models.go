@@ -2,6 +2,7 @@ package models
 
 import (
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/hongjun500/Go-master/gin-web-example/pkg/setting"
 	"github.com/jinzhu/gorm"
 	"log"
@@ -9,10 +10,11 @@ import (
 
 var db *gorm.DB
 
+// Model 基础表结构字段结构体
 type Model struct {
-	ID         int    `gorm:"primary_key" json:"id"`
-	CreatedOn  string `json:"created_on"`
-	ModifiedOn string `json:"modified_on"`
+	ID         int `gorm:"primary_key" json:"id"`
+	CreatedOn  int `json:"created_on"`
+	ModifiedOn int `json:"modified_on"`
 }
 
 func init() {
@@ -31,7 +33,7 @@ func init() {
 	host = sec.Key("HOST").String()
 	tablePrefix = sec.Key("TABLE_PREFIX").String()
 
-	db, err := gorm.Open(dbType, fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local", user, password, host, dbName))
+	db, err = gorm.Open(dbType, fmt.Sprintf("%s:%s@tcp(%s)/%s?charset=utf8&parseTime=True&loc=Local", user, password, host, dbName))
 	if err != nil {
 		log.Fatalf("db connection fail, %s", err)
 	}
