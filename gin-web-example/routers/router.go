@@ -14,13 +14,23 @@ func InitRouter() *gin.Engine {
 	router.Use(gin.Recovery())
 	gin.SetMode(setting.RunMode)
 
-	// 路由组
-	apiv1 := router.Group("/api/v1")
+	// 文章标签路由组
+	tagsRouterGroup := router.Group("/api/v1")
 	{
-		apiv1.GET("/tags", v1.GetTags)
-		apiv1.POST("/tags", v1.AddTag)
-		apiv1.PUT("/tags/:id", v1.EditTag)
-		apiv1.DELETE("/tags/:id", v1.DeleteTag)
+		tagsRouterGroup.GET("/tags", v1.GetTags)
+		tagsRouterGroup.POST("/tags", v1.AddTag)
+		tagsRouterGroup.PUT("/tags/:id", v1.EditTag)
+		tagsRouterGroup.DELETE("/tags/:id", v1.DeleteTag)
+	}
+
+	// 文章路由组
+	articleRouterGroup := router.Group("/api/v1")
+	{
+		articleRouterGroup.GET("/articles/:id", v1.GetArticle)
+		articleRouterGroup.GET("/articles", v1.ListArticles)
+		articleRouterGroup.POST("/articles/:id", v1.AddArticle)
+		articleRouterGroup.PUT("/articles/:id", v1.EditArticle)
+		articleRouterGroup.DELETE("/articles/:id", v1.DeleteArticle)
 	}
 
 	router.GET("/ping", func(context *gin.Context) {

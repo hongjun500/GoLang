@@ -10,7 +10,7 @@ import (
  * @date 2022/9/10 11:26
  * @tool ThinkPadX1隐士
  * Created with GoLand 2021.2
- * Description:
+ * Description: 文章标签模型接口
  */
 
 type Tag struct {

@@ -16,7 +16,7 @@ import (
  * @date 2022/9/10 10:57
  * @tool ThinkPadX1隐士
  * Created with GoLand 2021.2
- * Description:
+ * Description: 文章标签服务
  */
 
 // GetTags 获取文章多个标签
