@@ -14,7 +14,7 @@ import (
  */
 
 type Article struct {
-	Model Model
+	Model
 
 	// tag_id字段加了一个索引
 	TagId int    `json:"tag_id" gorm:"index"`
