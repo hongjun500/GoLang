@@ -20,6 +20,15 @@ import (
  */
 
 // GetTags 获取文章多个标签
+// PingExample godoc
+// @Summary 获取文章多个标签
+// @Schemes
+// @Description do ping
+// @Tags example
+// @Accept json
+// @Produce json
+// @Success 200 {string} Helloworld
+// @Router /api/v1/tags  [get]
 func GetTags(context *gin.Context) {
 	// 通过名称查询标签
 	var name = context.Query("name")
@@ -46,6 +55,13 @@ func GetTags(context *gin.Context) {
 	})
 }
 
+// @Summary 新增文章标签
+// @Produce  json
+// @Param name query string true "Name"
+// @Param state query int false "State"
+// @Param created_by query int false "CreatedBy"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
+// @Router /api/v1/tags [post]
 func AddTag(context *gin.Context) {
 	name := context.Query("name")
 	state := com.StrTo(context.DefaultQuery("state", "0")).MustInt()
@@ -81,6 +97,14 @@ func AddTag(context *gin.Context) {
 	})
 }
 
+// @Summary 修改文章标签
+// @Produce  json
+// @Param id path int true "ID"
+// @Param name query string true "ID"
+// @Param state query int false "State"
+// @Param modified_by query string true "ModifiedBy"
+// @Success 200 {string} json "{"code":200,"data":{},"msg":"ok"}"
+// @Router /api/v1/tags/{id} [put]
 func EditTag(context *gin.Context) {
 	id := com.StrTo(context.Param("id")).MustInt()
 	name := context.Query("name")

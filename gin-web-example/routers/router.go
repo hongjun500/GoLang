@@ -2,9 +2,12 @@ package routers
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/hongjun500/Go-master/gin-web-example/docs"
 	"github.com/hongjun500/Go-master/gin-web-example/middleware/jwt"
 	"github.com/hongjun500/Go-master/gin-web-example/pkg/setting"
 	v1 "github.com/hongjun500/Go-master/gin-web-example/routers/api/v1"
+	swaggerfiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func InitRouter() *gin.Engine {
@@ -38,7 +41,10 @@ func InitRouter() *gin.Engine {
 		context.JSON(200, gin.H{"success": "ok", "msg": "hello go"})
 	})
 
+	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.GET("/auth", v1.GetAuth)
+	docs.SwaggerInfo.BasePath = "/api/v1"
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	return router
 }
