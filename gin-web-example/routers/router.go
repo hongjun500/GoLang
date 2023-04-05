@@ -12,9 +12,13 @@ import (
 
 func InitRouter() *gin.Engine {
 	router := gin.New()
+	gin.Default()
 	// 强制日志颜色化
 	gin.ForceConsoleColor()
 	router.Use(gin.Logger())
+	// 限流中间件
+	/*router.Use(limits.RequestSizeLimiter(10))
+	router.Use(cors.Default())*/
 	router.Use(gin.Recovery())
 	gin.SetMode(setting.RunMode)
 
