@@ -26,9 +26,9 @@ func main() {
 	}
 	fmt.Println("i值", i)
 
-	fmt.Println("分割线-------------------------------------")
+	fmt.Println("break关键字分割线-------------------------------------")
 
-	// break关键字可以结束其所在循环结构体的执行（这个示例会打印出10个0123）
+	// break关键字可以结束其所在循环结构体的执行（这个示例会打印出4个0123456789）
 	for i := 0; i < 10; i++ {
 		if i == 4 {
 			break
@@ -39,7 +39,7 @@ func main() {
 		}
 		fmt.Println("\n")
 	}
-	fmt.Println("分割线-------------------------------------")
+	fmt.Println("continue关键字分割线-------------------------------------")
 
 	// continue关键字可以结束条件判断其所在循环的执行（这个示例会打印出10个012356789）
 	for i := 0; i < 10; i++ {
@@ -140,7 +140,8 @@ func main() {
 
 }
 
-/**
+/*
+*
 // if语句的表达式
 */
 func pow(x, y, z float64) float64 {
@@ -152,7 +153,8 @@ func pow(x, y, z float64) float64 {
 	return z
 }
 
-/**
+/*
+*
 if语句中的变量声明在连着if后面的else中使用
 */
 func powElse(x, y, z float64) float64 {
@@ -179,7 +181,8 @@ func Sqrt(x int) int {
 	return z
 }
 
-/**
+/*
+*
 这里的结果会和上面不一样本质上是因为入参类型不同
 */
 func SqrtFloat64(x float64) float64 {
@@ -231,7 +234,7 @@ func b() {
 		// 延迟打印1
 		// 延迟打印2
 		// 延迟打印3
-		defer fmt.Print(i)
+		defer fmt.Print("延迟打印", i)
 		// 按照先进后出的策略最后结果会是3210
 	}
 	return

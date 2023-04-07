@@ -31,7 +31,8 @@ type aliasint int
 
 var aliasintvalue aliasint
 
-/**
+/*
+*
 主程序
 */
 func main() {
@@ -111,4 +112,11 @@ func main() {
 		ch := str[i]
 		fmt.Println(i, ch)
 	}
+
+	const (
+		Big   = 1 << 100
+		Small = Big >> 99
+	)
+	str = fmt.Sprintf("%d", Big)
+	fmt.Println(str)
 }

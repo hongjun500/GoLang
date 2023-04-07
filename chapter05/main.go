@@ -14,6 +14,34 @@ func main() {
 	var arrLen = [...]string{"hello"}
 	fmt.Println("arrLen长度==", len(arrLen))
 
+	var initArr = [...]int{1, 99}
+
+	for i, i2 := range initArr {
+		fmt.Println("initArr索引", i)
+		fmt.Println("initArr值", i2)
+	}
+
+	var all [2]interface{}
+	all[0] = "字符串string"
+	all[1] = 88
+	for i, v := range all {
+		fmt.Println("all 的i=", i)
+		fmt.Println("all 的v=", v)
+	}
+	type User struct {
+		name string
+		age  int
+	}
+	var users [2]User
+	users[1] = User{
+		age:  20,
+		name: "hongjun",
+	}
+	for i, v := range users {
+		fmt.Println("users 的i=", i)
+		fmt.Println("users 的v=", v)
+	}
+
 	// 声明一个名为array类型为int,长度为10的数组
 	var array [10]int
 	for i := 0; i < len(array); i++ {
