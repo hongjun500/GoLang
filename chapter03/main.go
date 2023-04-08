@@ -5,6 +5,17 @@ import (
 )
 
 func main() {
+	str := "hello go"
+	//将指针strPointer指向变量str的地址：
+	strPointer := &str
+	fmt.Println(strPointer)
+
+	var intPointer *int
+	addr := &intPointer
+	fmt.Println(addr)
+
+	var arrPointer []*[]string
+	fmt.Println(&arrPointer)
 
 	// 指针的定义 var varName *varType
 	// var intPointer *int
@@ -89,9 +100,26 @@ func main() {
 	fmt.Printf("交换之后ePointer的值=%v \n", e)
 	fmt.Printf("交换之后qPointer的值=%v \n", q)
 
+	// 定义一个变量 str 并赋值 hello,go
+	var strs = "hello,go"
+	// 定义一个指针并指向变量 str
+	var strPointers = &strs
+	// 定义一个 value 变量并赋值指针 strPointer 指向变量的值
+	var value = *strPointer
+	fmt.Println("&strPointers", strPointers)
+	fmt.Println("value", value)
+
+	var x int = 5
+	var pointerToX *int = &x
+	fmt.Println("The value of x is:", x)
+	fmt.Println("The address of x is:", &x)
+	fmt.Println("The value of pointerToX is:", pointerToX)
+	fmt.Println("The value that pointerToX points to is:", *pointerToX)
+
 }
 
-/**
+/*
+*
 传入两个int类型的指针参数
 将俩指针地址的值进行交换
 */

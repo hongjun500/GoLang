@@ -30,6 +30,28 @@ func maps() {
 		fmt.Printf("key=%v,value=%v \n", key, value)
 	}
 
+	// 定义一个 map userMap
+	var userMap map[interface{}]interface{}
+
+	// 定义一个切片 users
+	var users []map[interface{}]interface{}
+
+	// 初始化 userMap 并赋值
+	userMap = make(map[interface{}]interface{})
+	// 一般会直接使用 userMap := make(map[interface{}]interface{}) 这种方式，更推荐
+	userMap["name"] = "hongjun500"
+	userMap["age"] = 20
+
+	// 初始化 users 并赋值
+	users = make([]map[interface{}]interface{}, 2)
+	users[0] = userMap
+	// 使用 for 循环遍历 users
+	for index, user := range users {
+		fmt.Println("开始遍历 users")
+		fmt.Println("users->index:", index)
+		fmt.Println("users->user:", user)
+	}
+
 	// map的元素删除：使用内置函数delete(m map[Type]Type1, key Type)
 	// 将maps中键为1的元素删除
 	delete(maps, 1)
@@ -91,4 +113,5 @@ func maps() {
 	for k, v := range interfaceMap {
 		fmt.Println(k, v)
 	}
+
 }
