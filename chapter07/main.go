@@ -42,6 +42,10 @@ type Address struct {
 	latitude    float64
 }
 
+func describe(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
 // InfoPointer 接收者为值 Teacher
 // 由于接收者为值 Teacher, 此方法类的改变属性行为只有引用数据类型WorkAddress会被改变，其它的基本数据不会改变
 func (t Teacher) InfoPointer() {
@@ -55,7 +59,9 @@ func (t Teacher) InfoPointer() {
 	// 	", 性别为" + strconv.Itoa(t.Sex) + ",是否有工作？" + strconv.FormatBool(t.HasDoWork))
 	t.Feature = []string{"听歌", "看书"}
 	// fmt.Printf("特点是: %v \n", t.Feature)
-
+	if t.WorkAddress == nil {
+		t.WorkAddress = make(map[int]Address, 0)
+	}
 	t.WorkAddress[1] = Address{
 		AddressName: "游泳池",
 		longitude:   11111,
@@ -138,6 +144,8 @@ func main() {
 	fmt.Println(teacherPeople)
 	fmt.Println("teacherPeople调用InfoPointer方法得到的数据")
 	teacherPeople.InfoPointer()
+	t := new(Teacher)
+	t.InfoPointer()
 	fmt.Println(teacherPeople)
 	fmt.Println("------------------------------------------------------------------------")
 
@@ -168,6 +176,8 @@ func main() {
 
 	fmt.Println("studentPeople原属性：")
 	fmt.Println(studentPeople)
+	s := &studentPeople
+	s.InfoPointer()
 	fmt.Println("studentPeople调用InfoPointer方法得到的数据")
 	studentPeople.InfoPointer()
 	fmt.Println(studentPeople)

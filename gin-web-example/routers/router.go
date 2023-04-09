@@ -17,8 +17,8 @@ func InitRouter() *gin.Engine {
 	gin.ForceConsoleColor()
 	router.Use(gin.Logger())
 	// 限流中间件
-	/*router.Use(limits.RequestSizeLimiter(10))
-	router.Use(cors.Default())*/
+	/*routers.go.Use(limits.RequestSizeLimiter(10))
+	routers.go.Use(cors.Default())*/
 	router.Use(gin.Recovery())
 	gin.SetMode(setting.RunMode)
 
@@ -45,7 +45,7 @@ func InitRouter() *gin.Engine {
 		context.JSON(200, gin.H{"success": "ok", "msg": "hello go"})
 	})
 
-	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	//routers.go.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.GET("/auth", v1.GetAuth)
 	docs.SwaggerInfo.BasePath = "/"
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))

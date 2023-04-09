@@ -15,10 +15,11 @@ import (
  */
 
 func GetDb() *gorm.DB {
-	dsn := "user:pass@tcp(127.0.0.1:3306)/dbname?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "root:hongjun500@tcp(127.0.0.1:3306)/miaosha_go?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn))
 	if err != nil {
 		log.Println("数据库连接失败", err)
+
 	}
 	return db
 }

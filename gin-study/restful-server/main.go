@@ -100,7 +100,7 @@ func main() {
 	router.GET("/sync", example.Sync)
 
 	// 日志
-	// router.GET("/logInfo", example.LogInfoSave)
+	// routers.go.GET("/logInfo", example.LogInfoSave)
 	// 禁用控制台颜色
 	// gin.DisableConsoleColor()
 
@@ -115,22 +115,22 @@ func main() {
 		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
 	}
 
-	/*router.POST("/foo", func(c *gin.Context) {
+	/*routers.go.POST("/foo", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "foo")
 	})
 
-	router.GET("/ ", func(c *gin.Context) {
+	routers.go.GET("/ ", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "bar")
 	})
 
-	router.GET("/status", func(c *gin.Context) {
+	routers.go.GET("/status", func(c *gin.Context) {
 		c.JSON(http.StatusOK, "ok")
 	})*/
 
 	router.POST("/requestBody", example.RequestBody)
 	router.POST("/requestBodys", example.RequestBodys)
 
-	// log.Fatal(autotls.Run(router, "example1.com", "example2.com"))
+	// log.Fatal(autotls.Run(routers.go, "example1.com", "example2.com"))
 
 	// 使用ShouldBindUri获取占位符数据绑定结构体
 	router.GET("/:name/:id", example.UrIParam)
@@ -144,7 +144,7 @@ func main() {
 
 	router.GET("/cookie", example.CookieData)
 
-	//router.GET("/user/:name", example.GetRouteParam)
+	//routers.go.GET("/user/:name", example.GetRouteParam)
 	// 启动并监听在8086端口上
 	router.Run(":8086")
 }

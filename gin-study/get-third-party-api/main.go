@@ -6,8 +6,8 @@ import (
 )
 
 /*func main() {
-	router := gin.Default()
-	router.GET("/someDataFromReader", func(c *gin.Context) {
+	routers.go := gin.Default()
+	routers.go.GET("/someDataFromReader", func(c *gin.Context) {
 		response, err := http.Get("https://raw.githubusercontent.com/gin-gonic/logo/master/color.png")
 		if err != nil || response.StatusCode != http.StatusOK {
 			c.Status(http.StatusServiceUnavailable)
@@ -25,7 +25,7 @@ import (
 		c.DataFromReader(http.StatusOK, contentLength, contentType, reader, extraHeaders)
 	})
 
-	router.Run(":8086")
+	routers.go.Run(":8086")
 }*/
 
 func main() {
