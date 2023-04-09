@@ -79,28 +79,28 @@ func Print(str string) {
 	fmt.Println(str)
 }
 
-/**
+/*
 一个string类型入参并打印，无法返回值
 */
 func logNoReturn(str string) {
 	fmt.Println(str)
 }
 
-/**
+/*
 两个int类型入参，返回一个int类型参数
 */
 func sum(x, y int) int {
 	return x + y
 }
 
-/**
+/*
 无参数无返回值的打印
 */
 func logNoReturnAndParam() {
 	fmt.Println("无参数无返回值的打印")
 }
 
-/**
+/*
 接收三个参数，并且返回两个int类型一个string类型的值
 注意这里的返回值a,b,c被命名了
 返回值的命名应当具有一定含义，可以作为文档使用
@@ -138,6 +138,7 @@ func func_div(fc func(int, int) (int, int), c, d int) (int, int) {
 // argsFunc(1,2)
 // argsFunc(1)
 func argsFunc(args ...int) {
+	// 得到一个新的切片
 	args = append(args, 1888888)
 	fmt.Println("argsFunc函数调用")
 	for _, arg := range args {
