@@ -12,9 +12,13 @@ import (
 
 func InitRouter() *gin.Engine {
 	router := gin.New()
+	gin.Default()
 	// 强制日志颜色化
 	gin.ForceConsoleColor()
 	router.Use(gin.Logger())
+	// 限流中间件
+	/*routers.go.Use(limits.RequestSizeLimiter(10))
+	routers.go.Use(cors.Default())*/
 	router.Use(gin.Recovery())
 	gin.SetMode(setting.RunMode)
 
@@ -41,9 +45,9 @@ func InitRouter() *gin.Engine {
 		context.JSON(200, gin.H{"success": "ok", "msg": "hello go"})
 	})
 
-	//router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	//routers.go.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.GET("/auth", v1.GetAuth)
-	docs.SwaggerInfo.BasePath = "/api/v1"
+	docs.SwaggerInfo.BasePath = "/"
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerfiles.Handler))
 
 	return router

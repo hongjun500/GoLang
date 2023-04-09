@@ -10,7 +10,6 @@ type People interface {
 	// Info()
 	// 简介的方法，入参是指针
 	InfoPointer()
-	Setting()
 }
 
 // Teacher 声明老师的结构体
@@ -43,12 +42,16 @@ type Address struct {
 	latitude    float64
 }
 
+func describe(i I) {
+	fmt.Printf("(%v, %T)\n", i, i)
+}
+
 // InfoPointer 接收者为值 Teacher
 // 由于接收者为值 Teacher, 此方法类的改变属性行为只有引用数据类型WorkAddress会被改变，其它的基本数据不会改变
 func (t Teacher) InfoPointer() {
 	// 改变属性Name和Feature还有WorkAddress
 	// fmt.Println("Info方法，改变属性Name和Feature还有WorkAddress")
-	t.Name = "改变了姓名的"
+	t.Name = "改变了姓名的" + t.Name
 	t.Age = 999
 	t.Sex = 0
 	t.HasDoWork = true
@@ -56,7 +59,9 @@ func (t Teacher) InfoPointer() {
 	// 	", 性别为" + strconv.Itoa(t.Sex) + ",是否有工作？" + strconv.FormatBool(t.HasDoWork))
 	t.Feature = []string{"听歌", "看书"}
 	// fmt.Printf("特点是: %v \n", t.Feature)
-
+	if t.WorkAddress == nil {
+		t.WorkAddress = make(map[int]Address, 0)
+	}
 	t.WorkAddress[1] = Address{
 		AddressName: "游泳池",
 		longitude:   11111,
@@ -81,9 +86,9 @@ func (t Teacher) InfoPointer() {
 func (s *Student) InfoPointer() {
 	// 改变属性Name和Feature还有WorkAddress
 	// fmt.Println("InfoPointer方法，改变属性Name和Feature还有WorkAddress")
-	s.Name = "改变了姓名的"
-	s.Age = 223
-	s.Sex = 1000
+	s.Name = "改变了姓名的" + s.Name
+	s.Age = 223 * 2
+	s.Sex = 1000 * 2
 	s.HasDoWork = true
 	s.Feature = []string{"听歌", "看书"}
 	// fmt.Println("这是" + t.Name + "老师，" + "年龄=" + strconv.Itoa(t.Age) + "岁" +
@@ -110,23 +115,11 @@ func (s *Student) InfoPointer() {
 	}
 }
 
-func (t Teacher) Setting(s string) Teacher {
-	return Teacher{
-		Name:        "" + t.Name + s,
-		Age:         t.Age,
-		Sex:         0,
-		HasDoWork:   false,
-		Feature:     nil,
-		WorkAddress: nil,
-		WorkDay:     nil,
-	}
-}
-
 func main() {
 	teacherPeople := Teacher{
-		Name:      "李青",
-		Age:       30,
-		Sex:       1,
+		Name:      "李青老师",
+		Age:       35,
+		Sex:       2,
 		HasDoWork: false,
 		Feature:   []string{"上课", "改作业"},
 		WorkAddress: map[int]Address{
@@ -143,16 +136,25 @@ func main() {
 		},
 		WorkDay: map[int]string{
 			1: "两节课",
-			3: "两节课",
+			3: "三节课",
 			5: "两节课",
 		},
 	}
+	fmt.Println("teacherPeople原属性：")
+	fmt.Println(teacherPeople)
+	fmt.Println("teacherPeople调用InfoPointer方法得到的数据")
+	teacherPeople.InfoPointer()
+	t := new(Teacher)
+	t.InfoPointer()
+	fmt.Println(teacherPeople)
+	fmt.Println("------------------------------------------------------------------------")
+
 	studentPeople := Student{
-		Name:      "李青",
-		Age:       30,
+		Name:      "李青学生",
+		Age:       18,
 		Sex:       1,
 		HasDoWork: false,
-		Feature:   []string{"上课", "改作业"},
+		Feature:   []string{"上课", "写作业"},
 		WorkAddress: map[int][]string{
 			1: {
 				"502教室",
@@ -172,13 +174,22 @@ func main() {
 		},
 	}
 
-	fmt.Println("------------------------teacherPeople调用InfoPointer方法--------------------------")
-	teacherPeople.InfoPointer()
-	fmt.Println("teacherPeople原属性：")
-	fmt.Println(teacherPeople)
-
-	fmt.Println("------------------------studentPeople调用InfoPointer方法--------------------------")
-	studentPeople.InfoPointer()
 	fmt.Println("studentPeople原属性：")
 	fmt.Println(studentPeople)
+	s := &studentPeople
+	s.InfoPointer()
+	fmt.Println("studentPeople调用InfoPointer方法得到的数据")
+	studentPeople.InfoPointer()
+	fmt.Println(studentPeople)
+
+}
+
+// SumIntsOrFloats sums the values of map m. It supports both int64 and float64
+// as types for map values.
+func SumIntsOrFloats[K comparable, V int64 | float64](m map[K]V) V {
+	var s V
+	for _, v := range m {
+		s += v
+	}
+	return s
 }
