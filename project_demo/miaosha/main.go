@@ -11,7 +11,7 @@ func main() {
 	router := routers.InitRouter()
 
 	router.POST("/userRegister", api.UserRegister)
-
+	router.Group("/api/v1", api.UserRegister)
 	// 启动并监听在8080端口
 	router.Run(":8080")
 }
