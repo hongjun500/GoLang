@@ -93,9 +93,7 @@ func AlbumAll(album *Album) ([]Album, error) {
 	return albumList, nil
 }
 
-/*
-添加数据
-*/
+// SaveAlbum 添加数据
 func SaveAlbum(album *Album) (Album, error) {
 	var alb Album
 	result, err := album.Db.Exec("INSERT INTO album (title, artist, price) values (?, ?, ?)", album.Title, album.Artist, album.Price)
@@ -123,10 +121,8 @@ func listResult(album *Album) (any, error) {
 	return nil, err
 }
 
-/*
-预处理语句
-*/
-
+// PreAlbumById 预处理语句
+// 根据 id 查询Album
 func PreAlbumById(id int64, album *Album) (Album, error) {
 	stmt, err := album.Db.Prepare("select * from album where id = ?")
 	if err != nil {
@@ -143,10 +139,8 @@ func PreAlbumById(id int64, album *Album) (Album, error) {
 	return alb, nil
 }
 
-/*
-事务操作
-*/
-
+// CreateTag 修改 Album
+// 事务操作
 func CreateTag(ctx context.Context, album *Album, albumId int, title string) (tagId int64, err error) {
 	// 定义匿名函数
 	fail := func(err error) (int64, error) {
