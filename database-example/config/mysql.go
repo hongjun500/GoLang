@@ -15,7 +15,7 @@ type DbConn struct {
 func GetMySQLConn() (DbConn, error) {
 	// 设置时区为东八区
 	loc, _ := time.LoadLocation("Asia/Shanghai")
-	//数据库配置
+	// 数据库配置
 	config := mysql.Config{
 		User:   "root",
 		Passwd: "hongjun500",
