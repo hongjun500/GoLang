@@ -47,7 +47,6 @@ func (user *UserDO) UserRegister(model *model.UserModel) {
 	user.TelPhone = model.TelPhone
 	user.Gender = model.Gender
 
-	db := conf.GetDb()
 	tx := db.Begin()
 	result := tx.Create(&user)
 	if result.Error == nil {

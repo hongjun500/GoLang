@@ -1,0 +1,45 @@
+// Package collection 存放集合的包，ps:利用泛型简单仿写Java中的集合
+package collection
+
+type T any
+
+// List 单向链表
+type List[T any] struct {
+	Next *List[T] // 下一个节点
+	Val  T        // 值
+}
+
+// Collection 接口包含添加、获取元素方法
+type Collection interface {
+	AddElement(E T) bool //
+	//GetElement(index int64) (List[T], error)
+}
+
+// AddElement 添加元素
+func (l *List[T]) AddElement(E T) bool {
+	if l.Next == nil {
+		l.Next = &List[T]{Val: E}
+		return true
+	} else {
+		l.Next.AddElement(E)
+	}
+	return false
+}
+
+func (l *List[T]) GetElement(index int64) (List[T], error) {
+	/*if index < 0 {
+		return List[any]{}, fmt.Errorf("index shoult gt zero")
+	}
+	return List[any]{}, nil*/
+
+	//if index < 0 {
+	//	return List[any]{}, fmt.Errorf("invalid index: %d", index)
+	//}
+	//if l.Next == nil {
+	//	return List[any]{}, fmt.Errorf("list is empty")
+	//}
+	//if index == 0 {
+	//	return l.Next, nil
+	//}
+	return l.Next.GetElement(index - 1)
+}
