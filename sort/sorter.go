@@ -3,14 +3,24 @@ package main
 import (
 	"flag"
 	"fmt"
-	"sort/bubblesort"
+	"github.com/hongjun500/GoLang-master/sort/bubblesort"
 )
 
 var infile *string = flag.String("i", "infile", "File contains values for sorting")
 var outfile *string = flag.String("o", "outfile", "File to receive sorted values")
 var algorithm *string = flag.String("a", "qsort", "Sort algorithm")
 
+type T = interface{}
+
+type res struct {
+	Data T
+}
+
 func main() {
+
+	i := 1 << 4
+	p := 3 << 2
+	print(p + i)
 	/*flag.Parse()
 
 	if infile != nil {
