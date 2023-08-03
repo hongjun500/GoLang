@@ -2,7 +2,10 @@
 package main
 
 // 单个导入依赖包
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 import "math"
 
 // 分组导入多个(推荐)
@@ -114,9 +117,10 @@ func main() {
 	}
 
 	const (
-		Big   = 1 << 100
-		Small = Big >> 99
+		Big   = 1 << 2
+		Small = Big >> 3
 	)
-	str = fmt.Sprintf("%d", Big)
+	log.Print(Big)
 	fmt.Println(str)
+
 }
