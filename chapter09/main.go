@@ -37,14 +37,7 @@ func main() {
 	println("select 语句部分------------------")
 	sCh := make(chan int)
 	quit := make(chan int)
-	go func() {
-		for i := 0; i < 2; i++ {
-			// 从通道 sCh 中接收数据，对应的 case 语句不再阻塞
-			println(<-sCh)
-		}
 
-		quit <- 0
-	}()
 	selectCh(sCh, quit)
 
 	println("time 包的定时时间和 select 语句的default分支")
@@ -99,24 +92,6 @@ func closeCh() {
 	x, y, z := <-cc, <-cc, <-cc
 	println("通道被关闭后，读取的数据是通道类型的零值：x, y, z 为", x, y, z)
 
-}
-
-func selectCh(ch, quit chan int) {
-	x, y := 99, 1
-	time.Tick(100 * time.Millisecond)
-	for {
-		select {
-		// 检查通道 ch 是否可以进行发送数据
-		// 如果通道没有接收数据，就会阻塞
-		case ch <- x:
-			x, y = y, x+y
-		// 同理，检查通道 ch 是否可以进行接收数据
-		// 如果通道没有发送数据，就会阻塞
-		case <-quit:
-			println("quit")
-			return
-		}
-	}
 }
 
 func times() {
