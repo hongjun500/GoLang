@@ -3,8 +3,9 @@ package config
 import (
 	"database/sql"
 	"fmt"
-	"github.com/go-sql-driver/mysql"
 	"time"
+
+	"github.com/go-sql-driver/mysql"
 )
 
 type DbConn struct {
@@ -39,4 +40,8 @@ func GetMySQLConn() (DbConn, error) {
 	}
 	fmt.Println("MySQL Connected!")
 	return dbconn, nil
+}
+
+func inits() {
+
 }

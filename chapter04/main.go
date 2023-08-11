@@ -4,11 +4,15 @@ import (
 	"fmt"
 )
 
-// 定义一个名为Vertex的结构体(也代表自定义类型是Vertex)
+// Vertex 定义一个名为 Vertex 的结构体(也代表自定义类型是Vertex)
 type Vertex struct {
 	X int
 	Y int
 }
+
+type aliasint int
+
+var aliasintvalue aliasint
 
 type hongjun struct {
 	Name string
@@ -29,7 +33,7 @@ func main() {
 
 	// strList = stringList{"1","2"}
 	// 也可以直接
-	//strList := stringList{"hello", "go"}
+	// strList := stringList{"hello", "go"}
 	fmt.Println("变量strList的值为", strList)
 	fmt.Printf("变量strList的数据类型为%T", strList)
 	var student struct {

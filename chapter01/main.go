@@ -2,7 +2,10 @@
 package main
 
 // 单个导入依赖包
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 import "math"
 
 // 分组导入多个(推荐)
@@ -13,7 +16,7 @@ import (
 )
 
 // var 关键字可以出现在包或函数级别
-// 声明两个string变量
+// 声明两个 string 变量
 var java, goLang string = "java", "go"
 
 // 也可以使用此声明变量列表
@@ -23,19 +26,17 @@ var (
 	python = 1024
 
 	price float32 = 9.9
-	// 浮点类型默认float64
+	// 浮点类型默认 float64
 	price1 float64 = 9.9
 )
-
-type aliasint int
-
-var aliasintvalue aliasint
 
 /*
 *
 主程序
 */
 func main() {
+	// import_a 和 import_b 互相引用，会报错
+	// import_a.ImportA()
 	// 打印不换行
 	fmt.Print("hello, GoLang!")
 
@@ -46,13 +47,10 @@ func main() {
 
 	fmt.Println(math.Pi)
 	// 报错，小写字母开头未导出(即为无法引用)
-	// 不同包内小写开头无法导入
 	// fmt.Println(math.pi)
 
-	// 换个行
 	fmt.Print("\n")
 	fmt.Printf("打印事先声明的变量%v,%v,%v,%v", java, goLang, python, php)
-	// 换个行
 	fmt.Print("\n")
 
 	// 数值类型显示转换
@@ -84,7 +82,7 @@ func main() {
 
 	fmt.Println(java, golang, python, php, javascript)
 	fmt.Println(b, kb, mb, gb, tp, pb)
-	// iota关键字，iota初始值=0，每出现一次iota关键字直到下一个const关键字出现前iota都会都会自增1
+	// iota 关键字，iota 初始值为 0，每出现一次 iota 关键字直到下一个 const 关键字出现前 iota 都会都会自增 1
 	const (
 		c0 = iota // c0=0
 		c1 = iota // c1=1
@@ -114,9 +112,10 @@ func main() {
 	}
 
 	const (
-		Big   = 1 << 100
-		Small = Big >> 99
+		Big   = 1 << 2
+		Small = Big >> 3
 	)
-	str = fmt.Sprintf("%d", Big)
+	log.Print(Big)
 	fmt.Println(str)
+
 }
