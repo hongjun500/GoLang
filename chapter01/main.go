@@ -104,7 +104,7 @@ func main() {
 		fmt.Printf("%v , %c", i, ch)
 	}
 	fmt.Println("-----------------------")
-	str = "Hello, word"
+	str = "Hello, world"
 	n = len(str)
 	for i := 0; i < n; i++ {
 		ch := str[i]

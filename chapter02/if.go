@@ -11,14 +11,14 @@ import "math"
 // if 语句的表达式
 func pow(x, y, z float64) float64 {
 	// math.Pow(x, y) 求 x 的 y 次方
-	if value := math.Pow(x, y); value < z {
+	value := math.Pow(x, y)
+	if value < z {
 		return value
 	}
-	// return value, 报错，if 语句中的变量声明只能在 if 语句之内使用
 	return z
 }
 
-// if 语句中的变量声明在连着 if 后面的 else 中使用
+// if 语句中的变量声明可以在连着 if 后面的 if/else 中使用
 func powElse(x, y, z float64) float64 {
 	// math.Pow(x, y) 求x的y次方
 	if value := math.Pow(x, y); value < z {
@@ -30,6 +30,6 @@ func powElse(x, y, z float64) float64 {
 	} else {
 		value = 9999
 	}
-	// return value, 报错，if语句中的变量声明只能在if语句之内使用
+	// return value, 报错，if/else 语句已经结束，value 变量已经被销毁
 	return z
 }

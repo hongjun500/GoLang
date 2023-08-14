@@ -8,67 +8,21 @@ import (
 )
 
 func main() {
+	println("计算 2 的 3 次方，如果结果小于 100 就返回结果，否则返回 100")
+	value := pow(2, 3, 100)
+	fmt.Println("value = ", value)
 
+	println("for 循环部分-------------------------------------")
 	forfunc()
 
 	fmt.Println("switch 语句部分-------------------------------------")
-
-	// switch 语句 从上向下执行(可以没有小括号，大括号必须)
-	// 同 if 一样可以有短变量声明
-	// 每个 case 结构体后有默认的 break,
-	// 并且只会运行表达式对应选中的 case，此时 switch 运行到此结束
-	// 如果选中了 case 并且对应 case 包含一个 fallthrough 关键字语句，那么紧随其后的 case 也会执行
-
-	// 可以没有 default 语句
-	// 这个 switch 只会打印出 Go
-	switch lang := "Go"; lang {
-	case "Go":
-		fmt.Println("Go.")
-	case "Java":
-		fmt.Println("Java.")
-		fallthrough
-	case "Python":
-		fmt.Println("Python.")
-
-		/*default:
-		fmt.Printf("%s.\n", lang)*/
-	}
-
-	// 这个switch会打印出Go And Java
-	switch lang2 := "Go"; lang2 {
-	case "Go":
-		fmt.Print("Go And ")
-		// 在这里停止，执行下一个case且只执行下一个
-		fallthrough
-		// 这里会报错，由于有fallthrough的存在，程序将会直接去执行下一个case结构体或者是default中的代码
-		// fmt.Println("log")
-	/*case "Java":
-		fmt.Println(" Java.")
-	case "Python":
-		fmt.Println("Python.")
-	*/
-	default:
-		fmt.Printf("%s.\n", lang2)
-	}
 
 	println("defer 关键字部分-------------------------------------")
 	b()
 	fmt.Println(" ")
 	fmt.Println(c())
 	println("goto 关键字部分-------------------------------------")
-	myfunc()
-
-	var arr []string
-	arr = append(arr, "见到", "你,", "很高兴！")
-	// for 的遍历使用关键字 range
-	// 1.只获取下标
-	for key := range arr {
-		fmt.Println(key)
-	}
-	// 2.只获取值
-	for _, v := range arr {
-		fmt.Println(v)
-	}
+	gotoFunc()
 
 }
 
@@ -139,16 +93,4 @@ func b() {
 func c() (i int) {
 	defer func() { i++ }()
 	return 1
-}
-
-func myfunc() {
-
-	i := 0
-HERE:
-	fmt.Println(i) // i = 0 打印出0
-	i++            // 此时 i = 1
-	if i < 10 {    // i = 1会进入此判断结构体
-		// 跳到HERE	标签处，执行打印，程序会接着执行i++,又进入条件判断以此类推直到i=10的时候程序运行结束
-		goto HERE
-	}
 }

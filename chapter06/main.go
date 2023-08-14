@@ -53,7 +53,7 @@ func main() {
 
 	// defer关键字配合闭包使用
 
-	strWord := "hello word"
+	strWord := "hello world"
 	defer func() { // 这里的defer关键字会使此匿名函数延迟调用, 并且strWord的内存地址会被defer关键字保留，而并不是保留其值的内容
 		fmt.Printf("外部变量strWord=%v \n", strWord)
 	}()

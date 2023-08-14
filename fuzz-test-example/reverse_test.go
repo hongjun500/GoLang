@@ -12,7 +12,7 @@ func TestReverse(t *testing.T) {
 	testcases := []struct {
 		in, want string
 	}{
-		{"hello, word", "dlrow , olleH"},
+		{"hello, world", "dlrow , olleH"},
 		{"", ""},
 		{"123", "789"},
 	}
