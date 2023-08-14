@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/gin-gonic/gin/binding"
 	"io"
 	"log"
 	"net/http"
 	"os"
 	"restful-server/example"
+
+	"github.com/gin-gonic/gin"
+	"github.com/gin-gonic/gin/binding"
 )
 
 // LoginForm 表单结构体
@@ -144,7 +145,7 @@ func main() {
 
 	router.GET("/cookie", example.CookieData)
 
-	//routers.go.GET("/user/:name", example.GetRouteParam)
+	// routers.go.GET("/user/:name", example.GetRouteParam)
 	// 启动并监听在8086端口上
 	router.Run(":8086")
 }

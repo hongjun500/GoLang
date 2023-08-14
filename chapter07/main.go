@@ -42,7 +42,7 @@ type Address struct {
 	latitude    float64
 }
 
-func describe(i I) {
+func describe(i int) {
 	fmt.Printf("(%v, %T)\n", i, i)
 }
 
