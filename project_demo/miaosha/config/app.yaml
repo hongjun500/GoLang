@@ -1,0 +1,8 @@
+# gin 的配置
+gin:
+	server-name: miaosha
+	port: 8080
+	mode: DEBUG
+
+Mysql:
+	
