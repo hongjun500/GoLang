@@ -1,7 +1,7 @@
 // @author hongjun500
 // @date 2023/8/4 14:11
 // @tool ThinkPadX1隐士
-// Created with 2022.2.2.IntelliJ IDEA
+// Created with 2022.2.Goland
 // Description: 二叉树
 
 package find

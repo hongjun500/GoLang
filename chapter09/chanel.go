@@ -1,7 +1,7 @@
 // @author hongjun500
 // @date 2023/8/4 17:31
 // @tool ThinkPadX1隐士
-// Created with 2022.2.2.IntelliJ IDEA
+// Created with 2022.2.Goland
 // Description: goroutine 的 channel
 
 package main
