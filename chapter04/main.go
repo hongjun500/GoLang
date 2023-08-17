@@ -4,38 +4,14 @@ import (
 	"fmt"
 )
 
-// Vertex 定义一个名为 Vertex 的结构体(也代表自定义类型是Vertex)
-type Vertex struct {
-	X int
-	Y int
-}
-
-type aliasint int
-
-var aliasintvalue aliasint
-
-type hongjun struct {
-	Name string
-	age  int
-	sex  bool
-}
-
-// 自定义一个数据类型，数据类型为字符串切片，命名为stringList
-type stringList []string
-
-// 类型别名
-type aliasInt = int
-
 func main() {
 
-	// 声明一个名为strList类型是stringList的变量
-	var strList stringList
+	// 声明一个名为 strList 类型是 自定义类型 CustomSlice 的变量
+	var strList CustomSlice
 
-	// strList = stringList{"1","2"}
-	// 也可以直接
-	// strList := stringList{"hello", "go"}
+	strList = CustomSlice{"1", "2"}
 	fmt.Println("变量strList的值为", strList)
-	fmt.Printf("变量strList的数据类型为%T", strList)
+	fmt.Printf("变量 strList 的数据类型为%T", strList)
 	var student struct {
 		Name    string
 		Version float64
@@ -48,13 +24,14 @@ func main() {
 	vertex := Vertex{1, 9}
 	fmt.Println(vertex)
 
-	// 声明一个Vertex类型且名称为vertexData的变量（可以理解为创建java里面的一个对象）
+	// 声明一个 Vertex 类型且名称为 vertexData 的变量（可以理解为创建 java 里面的一个对象）
 	var vertexData Vertex
-	// 设置变量vertexData的字段Y的值为1
+	// 设置变量 vertexData 的字段 Y 的值为 1
 	vertexData.Y = 1
 
-	var aint aliasInt = 100
-	fmt.Printf("aint的数据类型是%T \n", aint)
+	var aint intAlias = 100
+	// aint 使用了 类型别名 intAlias，而 intAlias 又是自定义类型 CustomInt, 所以 aint 的数据类型是 main.CustomInt
+	fmt.Printf("aint 的数据类型是%T \n", aint)
 
 	// 匿名结构体
 	var user struct {
@@ -63,33 +40,6 @@ func main() {
 	}
 	user.username = "admin"
 	user.password = "1"
-	fmt.Printf("%#v \n", user)
+	fmt.Printf("匿名结构体 user %#v \n", user)
 
-	// 使用new 得到的是一个地址
-	hj := new(hongjun)
-	hj.Name = "hongjun500"
-	hj2 := hongjun{
-		Name: "",
-		age:  0,
-		sex:  false,
-	}
-	hj3 := &hj
-	fmt.Println(hj)
-	fmt.Println(hj2)
-	fmt.Println(*hj3)
-
-	fd := hj.getHjer("hongjun502")
-	fd2 := hj.getHjer("hongjun5000")
-	fmt.Println(fd)
-	fmt.Println(fd2)
-
-}
-
-// 声明一个结构体的方法
-func (hj *hongjun) getHjer(name string) (arg string) {
-	return name
-}
-
-func (hj hongjun) getHjer2(age int) hongjun {
-	return hongjun{age: age}
 }
