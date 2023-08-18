@@ -8,7 +8,6 @@
 - *数组无法比较大小，只能比较是否相等，长度和值一样才相等*
 
 ## 切片
-
 - 切片的底层就是指向数组的指针，在引用某个切片 `A` 得到另一个切片 `B` 时(切片截取)，改变切片 `B` 的元素内容，切片 `A`
   的内容也会随之改变(这**本质上就是指针的特征**)
 - 切片的声明方式是 `var varName []T`，其中 `T` 是切片中元素的类型
@@ -71,16 +70,37 @@ fmt.Println("切片arrSlice是空的")
           可以是一个同类型的切片)
 
 ## map
-
 > 元素对的无序集合
-> 在Golang中因为线程安全的问题将map分为了无锁的map和自带锁的 sync.Map
+- `map` 是引用类型，当将 `map` 传递给函数时，函数内部对 `map` 的修改会影响到原来的 `map`
+- `map` 的声明方式 `var mapName map[T]T`，其中第一个 `T` 是 `key` 的类型，第二个 `T` 是 `value` 的类型
+- `key` 的类型必须满足可比较的要求，即 `==` 和 `!=` 操作符可用于该类型，`value` 的类型没有限制
+> 在 `go` 中因为线程安全的问题将 `map` 分为了无锁的 `map` 和自带锁的 `sync.Map`
 
-- 无锁map
-- 声明方式var mapName map[T]T
-- 初始化使用make关键字 make(map[T]T)
-- map的取值：mapName["key"],该表达式会返回两个元素，一个是值，一个是布尔类型的判断key是否存在于该map中
-- map的遍历可以使用for循环加上range关键字
-- map删除元素可以使用内置函数delete(m map[Type]Type1, key Type),并且如果key不存在也不会有问题(排除极端情况)
-- sync.Map
+### 无锁 `map`
+- 声明方式 `var mapName map[T]T`
+- 初始化使用内置函数 `make(map[T]T)`
+- `map` 的取值 `mapName["key"]`,该表达式会返回两个元素，一个是值，一个是布尔类型的判断 `key` 是否存在于该 `map`中
+- `map` 的遍历可以使用 `for` 循环加上 `range` 关键字
+- `map` 删除元素可以使用内置函数 `delete(m map[Type]Type1, key Type)`,并且如果 `key` 不存在也不会有问题(排除极端情况)
 
-> 此map的操作都是基于自带函数
+### 有锁 `sync.Map`
+
+```go
+// 声明方式
+var syncMap sync.Map
+// 初始化方式
+syncMap = sync.Map{}
+// 添加元素
+syncMap.Store("key", "value")
+// 获取元素
+syncMap.Load("key")
+// 删除元素
+syncMap.Delete("key")
+// 遍历元素
+syncMap.Range(func(key, value interface{}) bool {
+fmt.Println(key, value)
+return true
+})
+```
+
+> 此种类型操作都是基于自带函数

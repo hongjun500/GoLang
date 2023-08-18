@@ -8,9 +8,11 @@ func main() {
 	spliceFunc()
 
 	println("map 部分------------------")
-	// maps()
+	maps()
 
-	println("无锁 map 扩展部分--------------------------------------")
+	println("无锁 map 扩展部分-----------")
+
+	syncMapFunc()
 
 	mapSliceFunc()
 
