@@ -8,6 +8,7 @@
 - *数组无法比较大小，只能比较是否相等，长度和值一样才相等*
 
 ## 切片
+
 - 切片的底层就是指向数组的指针，在引用某个切片 `A` 得到另一个切片 `B` 时(切片截取)，改变切片 `B` 的元素内容，切片 `A`
   的内容也会随之改变(这**本质上就是指针的特征**)
 - 切片的声明方式是 `var varName []T`，其中 `T` 是切片中元素的类型
@@ -48,12 +49,12 @@ fmt.Println("切片arrSlice是空的")
   > 如果切片的长度和容量都小于 1024，那么切片的容量会翻倍，如果大于 1024，那么切片的容量会增加 25%
 
 > 切片的截取时最终得到的切片会根据 `slice[begin:end]`
+
 - 切片的截取写法
     - `splice[begin:end]` 半开区间，包含 begin，排除 end
     - `splice[:end]` 从下标 0 开始到下标 end-1 的元素
     - `splice[begin:]` 从下标 begin 开始所有的元素
     - `splice[:]` 从下标 0 开始到下标最大值位置的元素(即所有元素)
-
 
 > 中上界下界的值进行界定，而写法有多种要么没定义上界要么没定义下界，总的来说*下界定义了
 就是最后一个元素取下标为下界值减一，反之则是都要*(加深自我理解)
@@ -70,13 +71,17 @@ fmt.Println("切片arrSlice是空的")
           可以是一个同类型的切片)
 
 ## map
+
 > 元素对的无序集合
+
 - `map` 是引用类型，当将 `map` 传递给函数时，函数内部对 `map` 的修改会影响到原来的 `map`
 - `map` 的声明方式 `var mapName map[T]T`，其中第一个 `T` 是 `key` 的类型，第二个 `T` 是 `value` 的类型
 - `key` 的类型必须满足可比较的要求，即 `==` 和 `!=` 操作符可用于该类型，`value` 的类型没有限制
+
 > 在 `go` 中因为线程安全的问题将 `map` 分为了无锁的 `map` 和自带锁的 `sync.Map`
 
 ### 无锁 `map`
+
 - 声明方式 `var mapName map[T]T`
 - 初始化使用内置函数 `make(map[T]T)`
 - `map` 的取值 `mapName["key"]`,该表达式会返回两个元素，一个是值，一个是布尔类型的判断 `key` 是否存在于该 `map`中
@@ -97,7 +102,7 @@ syncMap.Load("key")
 // 删除元素
 syncMap.Delete("key")
 // 遍历元素
-syncMap.Range(func(key, value interface{}) bool {
+syncMap.Range(func (key, value interface{}) bool {
 fmt.Println(key, value)
 return true
 })
