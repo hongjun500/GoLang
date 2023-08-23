@@ -4,9 +4,10 @@ import (
 	"context"
 	"database/sql"
 	"fmt"
-	"github.com/GoLang-master/database-example/config"
 	"log"
 	"time"
+
+	"github.com/hongjun500/GoLang-master/database-example/config"
 )
 
 type Album struct {

@@ -3,9 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/GoLang-master/database-example/config"
-	"github.com/GoLang-master/database-example/module"
 	"log"
+
+	"github.com/hongjun500/GoLang-master/database-example/config"
+	"github.com/hongjun500/GoLang-master/database-example/module"
 )
 
 /*// 声明一个数据库句柄

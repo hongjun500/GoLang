@@ -4,9 +4,9 @@
 
 > 包的导入只能单向，否则会产生循环依赖的问题，包的层级尽量简洁
 
-如
+*错误示范*
 
-  ```go 
+```go 
     package import_a
     
     `import (
@@ -23,7 +23,7 @@
       "github.com/hongjun500/GoLang-master/chapter01/import_a"
     )
     // 上面两个包会产生循环依赖的问题
-  ```
+```
 
 > **大写字母开头的常量、变量在包外可见，小写的则不行**
 

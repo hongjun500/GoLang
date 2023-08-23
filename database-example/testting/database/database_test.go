@@ -2,10 +2,11 @@ package testting
 
 import (
 	"context"
-	"github.com/GoLang-master/database-example/config"
-	"github.com/GoLang-master/database-example/module"
 	"testing"
 	"time"
+
+	"github.com/hongjun500/GoLang-master/database-example/config"
+	"github.com/hongjun500/GoLang-master/database-example/module"
 )
 
 func TestDatabase(t *testing.T) {
