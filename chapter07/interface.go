@@ -10,6 +10,13 @@ var (
 	teacher, student Study
 )
 
+type MyInt int
+
+var i int
+var j MyInt
+
+// 变量i和j具有不同的静态类型，尽管它们具有相同的基础类型，但如果不进行转换，它们就无法相互分配。
+
 type Study interface {
 	Info()
 }

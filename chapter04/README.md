@@ -10,6 +10,18 @@
  type Name Type
 ```
 
+```go
+type MyInt int
+
+var i int
+var j MyInt
+```
+> `Go` 是静态类型，即只有一种类型在编译时已知并固定： int、float32、*MyType、[]byte等。
+变量 `i` 和 `j` 具有不同的静态类型，尽管它们具有相同的基础类型，，但不能直接赋值，需要进行类型转换
+
+
+
+
 - `Type` 代表任意类型，可以是内置类型，也可以是自定义类型
     - `int`, `float64`, `string`, `bool` 等
     - `func` 函数类型
