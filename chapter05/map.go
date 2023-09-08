@@ -6,7 +6,7 @@ import (
 )
 
 func maps() {
-	fmt.Println("map相关内容-----------------------------")
+	// fmt.Println("map相关内容-----------------------------")
 	var m map[string]string
 	fmt.Printf("map 没有使用内置函数 make 初始化时 map == nil %v \n", m == nil)
 

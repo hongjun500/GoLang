@@ -62,7 +62,7 @@ func arrFunc() {
 
 func spliceFunc() {
 	// 由于数组是定长的(数组的长度是其类型的一部分，因此数组不能改变大小)
-	// 因此在Go中更多使用的是切片，(切片是长度可以变化的数组)切片和数组又息息相关
+	// 因此在 Go 中更多使用的是切片，(切片是长度可以变化的数组)切片和数组又息息相关
 	var arrSlice []string
 	if arrSlice == nil {
 		fmt.Println("切片 arrSlice 是空的")
@@ -116,4 +116,17 @@ func spliceFunc() {
 	// arr1 再追加元素
 	newArr1 := append(strings, "is", "good")
 	fmt.Printf("strings 追加单个字符串元素之后的值%v \n", newArr1)
+
+	slice := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+	s1 := slice[2:5]
+	s2 := s1[2:6:7]
+
+	s2 = append(s2, 100)
+	s2 = append(s2, 200)
+
+	s1[2] = 20
+
+	fmt.Println("s1 = ", s1)
+	fmt.Println("s2 = ", s2)
+	fmt.Println("slice = ", slice)
 }

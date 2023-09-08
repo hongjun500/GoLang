@@ -126,3 +126,31 @@ func (list *MyLinkedList) DeleteAtIndex(index int) {
 		list.Size -= 1
 	}
 }
+
+// 题意：反转一个单链表。
+// reverseList 反转链表 双指针
+func reverseList(head *LinkedNode) *LinkedNode {
+	if head == nil {
+		return head
+	}
+	cur := head
+	var pre *LinkedNode
+	for cur != nil {
+		next := cur.Next
+		cur.Next = pre
+		pre = cur
+		cur = next
+	}
+	return pre
+}
+
+// reverseList2 反转链表 递归
+func reverseList2(head *LinkedNode) *LinkedNode {
+	if head == nil || head.Next == nil {
+		return head
+	}
+	p := reverseList2(head.Next)
+	head.Next.Next = head
+	head.Next = nil
+	return p
+}
