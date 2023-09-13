@@ -28,6 +28,7 @@ func TestRemoveElements(t *testing.T) {
 	}
 }
 
+// TestMyLinkedList 测试链表的设计
 func TestMyLinkedList(t *testing.T) {
 	cur := Constructor()
 	list := &cur
@@ -49,4 +50,29 @@ func TestMyLinkedList(t *testing.T) {
 	t.Log(list.Get(0))
 	list.DeleteAtIndex(0)
 	t.Log(list.Get(0))
+}
+
+func TestReverseList(t *testing.T) {
+	node1 := &LinkedNode{Val: 1}
+	node2 := &LinkedNode{Val: 2}
+	node3 := &LinkedNode{Val: 3}
+	node4 := &LinkedNode{Val: 4}
+	node5 := &LinkedNode{Val: 5}
+	node1.Next = node2
+	node2.Next = node3
+	node3.Next = node4
+	node4.Next = node5
+	head := reverseList(node1) // 迭代 1 2 3 4 5
+	temp := head
+	for temp != nil {
+		t.Log(temp.Val)
+		temp = temp.Next
+	}
+
+	head = reverseList2(head) // 递归 1 2 3 4 5
+	for head != nil {
+		t.Log(head.Val)
+		head = head.Next
+	}
+
 }

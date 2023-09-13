@@ -110,6 +110,7 @@ func (list *MyLinkedList) AddAtIndex(index int, val int) {
 		pred = pred.Next
 	}
 	toAdd := &LinkedNode{val, pred.Next}
+	// 由于 pred 是 list.LinkedNode 的引用，所以 pred.Next = toAdd 会影响到 list.LinkedNode.Next
 	pred.Next = toAdd
 }
 
@@ -118,12 +119,15 @@ func (list *MyLinkedList) DeleteAtIndex(index int) {
 	if index < list.Size {
 		cur := list.LinkedNode
 		for i := 0; i < index; i++ {
+			// 找到要删除节点的前一个节点
 			cur = cur.Next
 		}
-		if cur.Next != nil {
+		println(cur.Val)
+		/*if cur.Next != nil {
+			// 将当前节点的下一个节点指向下下个节点，即为删除当前节点的下一个节点
 			cur.Next = cur.Next.Next
 		}
-		list.Size -= 1
+		list.Size -= 1*/
 	}
 }
 
@@ -136,9 +140,12 @@ func reverseList(head *LinkedNode) *LinkedNode {
 	cur := head
 	var pre *LinkedNode
 	for cur != nil {
+		// 保存当前节点的下一个节点
 		next := cur.Next
+		// 将当前节点的下一个节点指向前一个节点
 		cur.Next = pre
 		pre = cur
+		// 此时当前节点已经为下一个，一个一个遍历
 		cur = next
 	}
 	return pre
