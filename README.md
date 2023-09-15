@@ -22,4 +22,8 @@
 
 ## [database-example](./database-example/README.md)  访问关系型数据库 `MySQL`
 
+## [design-pattern](./design-pattern/README.md)  设计模式
+
 ## [gin-example](./gin-example/README.md)  `gin` 框架使用示例
+
+## [leetcode](./leetcode/README.md)  `LeetCode` 算法题解
