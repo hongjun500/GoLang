@@ -11,7 +11,6 @@ import (
 
 	"github.com/gin-gonic/gin"
 	restful_server "github.com/hongjun500/GoLang-master/gin-example/restful-server"
-	"github.com/hongjun500/GoLang-master/gin-example/restful-server/example"
 )
 
 func main() {
@@ -22,7 +21,6 @@ func main() {
 	})
 	authGroup(router)
 	getThirdPartyApi(router)
-	example.UploadFile(router)
 	restful_server.ExampleFunc(router)
 	server := &http.Server{
 		Addr:    ":8080",

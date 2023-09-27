@@ -1,9 +1,8 @@
 package example
 
 import (
-	"restful-server/common"
-
 	"github.com/gin-gonic/gin"
+	"github.com/hongjun500/GoLang-master/gin-example/restful-server/common"
 )
 
 /**
@@ -26,7 +25,7 @@ func GetRouteParam(context *gin.Context) {
 		/*context.JSON(http.StatusOK, gin.H{
 			"name":name,
 		})*/
-		common.Create(mapData, context)
+		common.Create(context, mapData)
 	}
 
 }
