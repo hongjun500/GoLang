@@ -1,8 +1,9 @@
 package example
 
 import (
-	"github.com/gin-gonic/gin"
 	"restful-server/common"
+
+	"github.com/gin-gonic/gin"
 )
 
 /**

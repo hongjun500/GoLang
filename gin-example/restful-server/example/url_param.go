@@ -1,9 +1,10 @@
 package example
 
 import (
-	"github.com/gin-gonic/gin"
 	"log"
-	"net/http"
+
+	"github.com/gin-gonic/gin"
+	"github.com/hongjun500/GoLang-master/gin-example/restful-server/common"
 )
 
 type Person struct {
@@ -25,20 +26,23 @@ func StartPage(context *gin.Context) {
 		log.Println(person.Name)
 		log.Println(person.Address)
 	}
-	context.JSON(http.StatusOK, gin.H{
+	common.Create(context, "ok")
+	/*context.JSON(http.StatusOK, gin.H{
 		"success": "ok",
-	})
+	})*/
 }
 
-// 用占位符取值
+// UrIParam 用占位符取值
 func UrIParam(context *gin.Context) {
 	var person Person2
 	if err := context.ShouldBindUri(&person); err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{
+		/*context.JSON(http.StatusBadRequest, gin.H{
 			"errMsg": err.Error(),
-		})
+		})*/
+
+		common.CreateFail(context, err.Error())
 	} else {
-		context.JSON(http.StatusOK, gin.H{
+		common.Create(context, gin.H{
 			"uuid": person.ID,
 			"name": person.Name,
 		})

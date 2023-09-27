@@ -1,4 +1,4 @@
-package main
+package restful_server
 
 import (
 	"fmt"
@@ -6,10 +6,10 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"restful-server/example"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
+	"github.com/hongjun500/GoLang-master/gin-example/restful-server/example"
 )
 
 // LoginForm 表单结构体
@@ -18,11 +18,8 @@ type LoginForm struct {
 	Password string `form:"password" binding:"required"`
 }
 
-func main() {
+func ExampleFunc(router *gin.Engine) {
 
-	router := gin.Default()
-	// 强制日志颜色化
-	gin.ForceConsoleColor()
 	// Content-Type = application/x-www-form-urlencoded 形式
 	router.POST("/login", func(context *gin.Context) {
 		var loginForm LoginForm
@@ -142,10 +139,11 @@ func main() {
 	router.POST("/getOrPostBingParamStruct", example.GetOrPostParamDataBindStruct)
 
 	// cookie
-
 	router.GET("/cookie", example.CookieData)
 
-	// routers.go.GET("/user/:name", example.GetRouteParam)
-	// 启动并监听在8086端口上
-	router.Run(":8086")
+	// 文件上传
+	router.MaxMultipartMemory = 8 << 20 // 可以给文件限制大小
+	router.POST("/upload", example.Upload)
+	router.POST("/uploads", example.Uploads)
+
 }

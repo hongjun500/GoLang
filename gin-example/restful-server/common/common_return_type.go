@@ -19,9 +19,16 @@ type ReturnType struct {
 	Data   interface{}
 }
 
-func Create(resultData interface{}, context *gin.Context) {
+func Create(context *gin.Context, data ...interface{}) {
 	context.JSON(http.StatusOK, ReturnType{
 		Status: "success",
-		Data:   resultData,
+		Data:   data,
+	})
+}
+
+func CreateFail(context *gin.Context, data ...interface{}) {
+	context.JSON(http.StatusOK, ReturnType{
+		Status: "fail",
+		Data:   data,
 	})
 }
