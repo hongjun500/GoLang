@@ -2,10 +2,7 @@ package restful_server
 
 import (
 	"fmt"
-	"io"
-	"log"
 	"net/http"
-	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
@@ -90,45 +87,12 @@ func ExampleFunc(router *gin.Engine) {
 		context.SecureJSON(http.StatusOK, names)
 	})
 
-	// 只绑定 url 查询字符串 ShouldBindQuery 函数只绑定 url 查询参数而忽略 post 数据
-	router.Any("/urlParam", example.StartPage)
-
 	// goroutine的使用
 	router.GET("/long_async", example.LongAsync)
 	router.GET("/sync", example.Sync)
 
-	// 日志
-	// routers.go.GET("/logInfo", example.LogInfoSave)
-	// 禁用控制台颜色
-	// gin.DisableConsoleColor()
-
-	// 记录到文件。
-	f, _ := os.Create("gin.log")
-	// gin.DefaultWriter = io.MultiWriter(f)
-
-	// 同时将日志写入文件和控制台
-	gin.DefaultWriter = io.MultiWriter(f, os.Stdout)
-
-	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
-		log.Printf("endpoint %v %v %v %v\n", httpMethod, absolutePath, handlerName, nuHandlers)
-	}
-
-	/*routers.go.POST("/foo", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "foo")
-	})
-
-	routers.go.GET("/ ", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "bar")
-	})
-
-	routers.go.GET("/status", func(c *gin.Context) {
-		c.JSON(http.StatusOK, "ok")
-	})*/
-
 	router.POST("/requestBody", example.RequestBody)
 	router.POST("/requestBodys", example.RequestBodys)
-
-	// log.Fatal(autotls.Run(routers.go, "example1.com", "example2.com"))
 
 	// 使用ShouldBindUri获取占位符数据绑定结构体
 	router.GET("/:name/:id", example.UrIParam)

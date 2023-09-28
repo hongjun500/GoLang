@@ -1,10 +1,10 @@
 package example
 
 import (
-	"net/http"
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/hongjun500/GoLang-master/gin-example/restful-server/common"
 )
 
 /**
@@ -24,13 +24,12 @@ type Persons struct {
 func GetOrPostParamDataBindStruct(context *gin.Context) {
 	var person Persons
 	if context.ShouldBind(&person) == nil {
-		context.JSON(http.StatusOK, gin.H{
-			"status:": "ok",
-			"person":  &person,
-		})
+		person.Name = "getMethod"
+		person.Address = "router.GET"
+		person.Birthday = time.Now()
+		common.Create(context, person)
+		return
 	} else {
-		context.JSON(http.StatusInternalServerError, gin.H{
-			"status": "fail",
-		})
+		common.CreateFail(context)
 	}
 }

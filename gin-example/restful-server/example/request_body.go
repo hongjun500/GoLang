@@ -1,10 +1,9 @@
 package example
 
 import (
-	"net/http"
-
 	"github.com/gin-gonic/gin"
 	"github.com/gin-gonic/gin/binding"
+	"github.com/hongjun500/GoLang-master/gin-example/restful-server/common"
 )
 
 /**
@@ -32,42 +31,30 @@ var (
 func RequestBody(context *gin.Context) {
 
 	if errA := context.ShouldBind(&objA); errA == nil {
-		context.JSON(http.StatusOK, gin.H{
-			"success": "ok",
-		})
-		// 因为现在 c.Request.Body 是 EOF，所以这里会报错。
+		common.Create(context, objA)
+		return
 	} else if errB := context.ShouldBind(&objB); errB == nil {
-		context.JSON(http.StatusOK, gin.H{
-			"success": "ok",
-		})
+		common.Create(context, objB)
+		return
 	} else {
-		context.JSON(http.StatusOK, gin.H{
-			"success": "ok",
-			"info":    "other",
-		})
+		common.Create(context, "other")
 	}
 }
 
 func RequestBodys(context *gin.Context) {
 	// 读取 c.Request.Body 并将结果存入上下文。
 	if errA := context.ShouldBindBodyWith(&objA, binding.JSON); errA == nil {
-		context.JSON(http.StatusOK, gin.H{
-			"success": "ok",
-		})
+		common.Create(context, objA)
+		return
 		// 这时, 复用存储在上下文中的 body。
 	} else if errB := context.ShouldBindBodyWith(&objB, binding.JSON); errB == nil {
-		context.JSON(http.StatusOK, gin.H{
-			"success": "ok",
-		})
+		common.Create(context, objB)
+		return
 		// 可以接受其他格式
 	} else if errB2 := context.ShouldBindBodyWith(&objB, binding.XML); errB2 == nil {
-		context.JSON(http.StatusOK, gin.H{
-			"success": "ok",
-		})
+		common.Create(context, objB)
+		return
 	} else {
-		context.JSON(http.StatusOK, gin.H{
-			"success": "ok",
-			"info":    "other",
-		})
+		common.Create(context, "other")
 	}
 }

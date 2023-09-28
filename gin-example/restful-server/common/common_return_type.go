@@ -15,8 +15,8 @@ import (
  */
 
 type ReturnType struct {
-	Status string
-	Data   interface{}
+	Status string      `json:"status"`
+	Data   interface{} `json:"data"`
 }
 
 func Create(context *gin.Context, data ...interface{}) {

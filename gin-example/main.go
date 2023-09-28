@@ -14,6 +14,7 @@ import (
 )
 
 func main() {
+
 	router := gin.Default() // 默认使用了 Logger 和 Recovery 中间件
 	router.GET("/", func(context *gin.Context) {
 		time.Sleep(5 * time.Second)
@@ -75,10 +76,10 @@ func authGroup(router *gin.Engine) {
 
 // getThirdPartyApi 获取第三方 api
 func getThirdPartyApi(router *gin.Engine) {
-	router.GET("/someDataFromReader", func(c *gin.Context) {
+	router.GET("/someDataFromReader", func(context *gin.Context) {
 		response, err := http.Get("https://raw.githubusercontent.com/gin-gonic/logo/master/color.png")
 		if err != nil || response.StatusCode != http.StatusOK {
-			c.Status(http.StatusServiceUnavailable)
+			context.Status(http.StatusServiceUnavailable)
 			return
 		}
 
@@ -90,6 +91,6 @@ func getThirdPartyApi(router *gin.Engine) {
 			"Content-Disposition": `attachment; filename="gopher.png"`,
 		}
 
-		c.DataFromReader(http.StatusOK, contentLength, contentType, reader, extraHeaders)
+		context.DataFromReader(http.StatusOK, contentLength, contentType, reader, extraHeaders)
 	})
 }

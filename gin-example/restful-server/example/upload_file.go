@@ -9,9 +9,10 @@ package example
 import (
 	"fmt"
 	"log"
-	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/hongjun500/GoLang-master/gin-example/restful-server/common"
 )
 
 // DST 指定一个上传文件的路径地址
@@ -21,28 +22,29 @@ func Upload(context *gin.Context) {
 	// 单个文件
 	file, err := context.FormFile("file")
 	if err != nil {
-		log.Fatal("获取文件失败!")
+		common.CreateFail(context, "获取文件失败!")
 	} else {
 		log.Println(file.Filename)
 		// 上传文件到指定路径
 		context.SaveUploadedFile(file, DST+file.Filename)
-		context.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
+		common.Create(context, "uploaded", file.Filename)
 	}
 }
 
 func Uploads(context *gin.Context) {
 	form, err := context.MultipartForm()
 	if err != nil {
-		log.Fatal("获取文件失败!")
+		common.CreateFail(context, "获取文件失败!")
 	} else {
 		files := form.File["upload[]"]
 		for _, file := range files {
 			log.Println(file.Filename)
 
-			// 上传文件到指定路径
-			context.SaveUploadedFile(file, DST+file.Filename)
+			// 上传文件到指定路径并以时间戳重命名
+			context.SaveUploadedFile(file, DST+fmt.Sprintf("%d", time.Now().Unix())+file.Filename)
+			// context.SaveUploadedFile(file, DST+file.Filename)
 		}
-		context.String(http.StatusOK, fmt.Sprintf("%d files uploaded!", len(files)))
+		common.Create(context, fmt.Sprintf("uploaded %d files", len(files)))
 	}
 
 }
