@@ -3,7 +3,6 @@ module github.com/hongjun500/GoLang-master/design-pattern
 go 1.19
 
 require (
-	github.com/go-playground/assert/v2 v2.2.0
 	github.com/stretchr/testify v1.8.4
 	gopkg.in/yaml.v3 v3.0.1
 )
