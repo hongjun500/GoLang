@@ -12,16 +12,19 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestAwsClientAdapter_CreateServer(t *testing.T) {
-	aws := &AwsClientAdapter{}
-	aws.Client = AWSClient{}
-	err := aws.CreateServer(1, 2)
-	assert.NoError(t, err)
-}
+func TestClientAdapter_CreateServer(t *testing.T) {
+	var ic ICreateServer
 
-func TestAliyunClientAdapter_CreateServer(t *testing.T) {
-	aliyun := &AliyunClientAdapter{}
-	aliyun.Client = AliyunClient{}
-	err := aliyun.CreateServer(3, 4)
+	ic = &AwsClientAdapter{
+		Client: AWSClient{},
+	}
+	err := ic.CreateServer(1, 2)
 	assert.NoError(t, err)
+
+	ic = &AliyunClientAdapter{
+		Client: AliyunClient{},
+	}
+	err = ic.CreateServer(3, 4)
+	assert.NoError(t, err)
+
 }
