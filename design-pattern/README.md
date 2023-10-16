@@ -27,3 +27,7 @@ https://lailin.xyz/post/factory.html#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95
 ### [适配器模式](adapter.go)
 
 ![适配器模式](./img/adapter.png)
+
+### [观察者模式](observer.go)
+
+![观察者模式](./img/observer.png)
