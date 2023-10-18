@@ -35,3 +35,7 @@ https://lailin.xyz/post/factory.html#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95
 ### [模板模式](template.go)
 
 ![模板模式](./img/template.png)
+
+### [策略模式](strategy.go)
+
+![策略模式](./img/strategy.png)
