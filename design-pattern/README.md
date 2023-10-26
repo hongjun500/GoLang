@@ -16,6 +16,8 @@ https://lailin.xyz/post/factory.html#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95
 
 ![建造者模式](./img/builder.png)
 
+## 结构型
+
 ### [桥接模式](bridging.go)
 
 ![桥接模式](./img/bridging.png)
@@ -30,6 +32,8 @@ https://lailin.xyz/post/factory.html#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95
 
 ### [观察者模式](observer.go)
 
+## 行为型
+
 ![观察者模式](./img/observer.png)
 
 ### [模板模式](template.go)
@@ -43,3 +47,7 @@ https://lailin.xyz/post/factory.html#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95
 ### [责任链模式](chain.go)
 
 ![责任链模式](./img/chain.png)
+
+### [状态模式](state.go)
+
+![状态模式](./img/state.png)
