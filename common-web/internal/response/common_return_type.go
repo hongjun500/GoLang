@@ -7,17 +7,18 @@
 package response
 
 import (
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 type CommonReturnType struct {
 	Status string `json:"status"` // success or fail
-	Data   any    `json:"data"`   // if status is success, return data, else return error message
+	Data   any    `json:"data"`   // if status is success, return data, else return error_handling message：
 	/**
 	{
-		"err_code": 300000,
-		"err_msg": "用户名已存在"
+		"err_code": 100000,
+		"err_msg": "未知错误",
 	}
 	*/
 }
