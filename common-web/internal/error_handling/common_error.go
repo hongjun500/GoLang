@@ -31,14 +31,14 @@ type CommonError struct {
 	ErrMsg  string `json:"err_msg"`  // 错误信息, 经过业务处理后的错误信息
 }
 
-func (e *CommonError) Error() string {
-	if e.ErrCode == 0 { // 如果错误为初始化值，则直接返回错误信息
-		return e.ErrMsg
+func (err *CommonError) Error() string {
+	if err.ErrCode == 0 { // 如果错误为初始化值，则直接返回错误信息
+		return err.ErrMsg
 	}
-	if msg, ok := BusinessErrorConstant[e.ErrCode]; ok && strings.EqualFold(msg, e.ErrMsg) {
+	if msg, ok := BusinessErrorConstant[err.ErrCode]; ok && strings.EqualFold(msg, err.ErrMsg) {
 		return msg
 	}
-	return e.ErrMsg
+	return err.ErrMsg
 
 }
 
@@ -53,6 +53,7 @@ func (e *CommonError) Error() string {
 // error_handling.NewCommonError(error_handling.UnknownError int, errMsg string) len(args) == 2
 //
 // error_handling.NewCommonError(error_handling error_handling, error_handling.UnknownError int, errMsg string) len(args) == 3
+// Deprecated: use NewCommonErrorV2 instead
 func NewCommonError(args ...any) *CommonError {
 	err := &CommonError{}
 
@@ -110,4 +111,76 @@ func NewCommonError(args ...any) *CommonError {
 		panic("common_error.go: unsupported number of arguments")
 	}
 	return err
+}
+
+func NewCommonErrorV2(args ...interface{}) *CommonError {
+	err := &CommonError{}
+
+	switch len(args) {
+	case 1:
+		err.setSingleArg(args[0])
+	case 2:
+		err.setDoubleArgs(args[0], args[1])
+	case 3:
+		err.setTripleArgs(args[0], args[1], args[2])
+	default:
+		panic("common_error.go: unsupported number of arguments")
+	}
+
+	return err
+}
+
+func (err *CommonError) setSingleArg(arg interface{}) {
+	switch v := arg.(type) {
+	case error:
+		err.Err = v
+		err.ErrCode = UnknownError
+		err.ErrMsg = BusinessErrorConstant[UnknownError]
+	case int:
+		err.ErrCode = v
+		err.ErrMsg = BusinessErrorConstant[v]
+	default:
+		panic("common_error.go: if there is only one argument, it should be error_handling or int")
+	}
+}
+
+func (err *CommonError) setDoubleArgs(arg0, arg1 interface{}) {
+	switch v0 := arg0.(type) {
+	case error:
+		err.Err = v0
+		err.setErrorCodeAndMessage(arg1)
+	case int:
+		err.ErrCode = v0
+		if msg, ok := arg1.(string); ok {
+			err.ErrMsg = msg
+		} else {
+			panic("common_error.go: if the first argument is int, the second argument should be string")
+		}
+	default:
+		panic("common_error.go: if there are 2 arguments, the first argument should be error_handling or int")
+	}
+}
+
+func (err *CommonError) setTripleArgs(arg0, arg1, arg2 interface{}) {
+
+	if e, ok := arg0.(error); ok {
+		err.Err = e
+		err.setErrorCodeAndMessage(arg1)
+		if msg, ok := arg2.(string); ok {
+			err.ErrMsg = msg
+		} else {
+			panic("common_error.go: if there are 3 arguments, the third argument should be string")
+		}
+	} else {
+		panic("common_error.go: if there are 3 arguments, the first argument should be error_handling")
+	}
+}
+
+func (err *CommonError) setErrorCodeAndMessage(arg interface{}) {
+	if code, ok := arg.(int); ok {
+		err.ErrCode = code
+		err.ErrMsg = BusinessErrorConstant[code]
+	} else {
+		panic("common_error.go: if the first argument is error_handling, the second argument should be int")
+	}
 }
