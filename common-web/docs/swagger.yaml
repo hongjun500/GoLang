@@ -1,0 +1,36 @@
+basePath: /
+definitions:
+  response.CommonReturnType:
+    properties:
+      data:
+        description: if status is success, return data, else return error_handling
+          message：
+      status:
+        description: success or fail
+        type: string
+    type: object
+info:
+  contact: {}
+  description: common-web API
+  title: common-web API
+  version: v1
+paths:
+  /health:
+    get:
+      consumes:
+      - application/json
+      description: 初始化健康检查路由
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.CommonReturnType'
+      summary: 初始化健康检查路由
+      tags:
+      - 健康检查
+schemes:
+- http
+- https
+swagger: "2.0"

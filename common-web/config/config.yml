@@ -1,0 +1,10 @@
+server:
+  Enabled: true
+  profile: dev
+  ApplicationName: common-web
+  GinRunMode: debug
+  Port: 8080
+  ReadTimeout: 60
+
+gin:
+  GinMode: debug

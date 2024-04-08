@@ -1,0 +1,53 @@
+{
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "swagger": "2.0",
+    "info": {
+        "description": "common-web API",
+        "title": "common-web API",
+        "contact": {},
+        "version": "v1"
+    },
+    "basePath": "/",
+    "paths": {
+        "/health": {
+            "get": {
+                "description": "初始化健康检查路由",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "健康检查"
+                ],
+                "summary": "初始化健康检查路由",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/response.CommonReturnType"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "response.CommonReturnType": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "description": "if status is success, return data, else return error_handling message："
+                },
+                "status": {
+                    "description": "success or fail",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
