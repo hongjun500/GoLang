@@ -15,6 +15,7 @@ import (
 func init() {
 	viper.SetConfigType("yml")
 	viper.SetConfigName("config")
+	// 当前目录
 	viper.AddConfigPath(".")
 	// 向下查找配置文件
 	viper.AddConfigPath("./config")
