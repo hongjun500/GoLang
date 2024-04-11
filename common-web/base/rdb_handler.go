@@ -16,6 +16,10 @@ import (
 
 type DatabaseHandlerCreator func(dataSourceName string) (DatabaseHandler, error)
 
+var (
+	LimitOffsetSQL = " LIMIT ? OFFSET ?"
+)
+
 var NewMySQLHandler DatabaseHandlerCreator = func(dataSourceName string) (DatabaseHandler, error) {
 	db, err := sql.Open("mysql", dataSourceName)
 	if err != nil {
@@ -62,6 +66,9 @@ func (handler *OracleHandler) ExecuteQuerySQL(dest any, SQL string, args ...any)
 
 func executeSQL(db *sql.DB, SQL string, args ...any) (int64, error) {
 	var count int64
+	// offset 用于计算偏移量
+	// limit 用于限制返回的行数
+	SQL += LimitOffsetSQL
 	err := db.QueryRow(SQL, args...).Scan(&count)
 	if err != nil {
 		return 0, fmt.Errorf("failed to execute count SQL: %v", err)
@@ -70,6 +77,10 @@ func executeSQL(db *sql.DB, SQL string, args ...any) (int64, error) {
 }
 
 func executeQuerySQL(db *sql.DB, dest any, SQL string, args ...any) error {
+	// Offset 用于计算偏移量
+	// Limit 用于限制返回的行数
+	// 拼接 SQL 语句 再执行查询
+	SQL += LimitOffsetSQL
 	rows, err := db.Query(SQL, args...)
 	if err != nil {
 		return fmt.Errorf("failed to execute query SQL: %v", err)

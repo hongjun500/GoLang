@@ -25,14 +25,14 @@ func TestMySQLHandler(t *testing.T) {
 		t.Fatalf("failed to create MySQLHandler: %v", err)
 	}
 
-	count, err := handler.ExecuteCountSQL("SELECT COUNT(*) FROM database_handler where id = ?", 1)
+	count, err := handler.ExecuteCountSQL("SELECT COUNT(*) FROM database_handler where id = ? ", 1, 10, 0)
 	if err != nil {
 		t.Fatalf("failed to execute count SQL: %v", err)
 	}
 
 	t.Logf("count: %d", count)
 
-	err = handler.ExecuteQuerySQL(handlers, "SELECT * FROM database_handler where id = ?", 1)
+	err = handler.ExecuteQuerySQL(handlers, "SELECT * FROM database_handler where id = ?", 1, 10, 0)
 	if err != nil {
 		t.Fatalf("failed to execute query SQL: %v", err)
 	}
