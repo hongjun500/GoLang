@@ -39,7 +39,7 @@ func TestBuilder(t *testing.T) {
 			},
 		},
 		{
-			name: "err",
+			name: "error_handling",
 			args: args{
 				name: "test",
 				opts: []ResourcePoolConfigOptFunc{
@@ -57,7 +57,7 @@ func TestBuilder(t *testing.T) {
 	for _, tt := range tests {
 		_, err := NewResourcePoolConfig(tt.args.name, tt.args.opts...)
 		if (err != nil) != tt.wantErr {
-			t.Errorf("NewResourcePoolConfig() error = %v, wantErr %v", err, tt.wantErr)
+			t.Errorf("NewResourcePoolConfig() error_handling = %v, wantErr %v", err, tt.wantErr)
 			return
 		}
 	}

@@ -7,9 +7,8 @@
 package array
 
 import (
+	"github.com/stretchr/testify/assert"
 	"testing"
-
-	"github.com/go-playground/assert/v2"
 )
 
 // TestBinarySearch 测试二分查找
