@@ -1,6 +1,8 @@
 module github.com/hongjun500/GoLang-master/common-web
 
-go 1.19
+go 1.21
+
+toolchain go1.22.4
 
 require (
 	github.com/gin-gonic/gin v1.9.1
