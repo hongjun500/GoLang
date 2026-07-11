@@ -1,6 +1,6 @@
 module github.com/hongjun500/GoLang-master/gin-example
 
-go 1.19
+go 1.23
 
 require github.com/gin-gonic/gin v1.9.1
 

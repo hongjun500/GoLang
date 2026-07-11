@@ -5,9 +5,14 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"os/exec"
 )
 
 func main() {
+
+	command := exec.Command("ps -ef|grep java")
+	fmt.Print(command.Output())
+
 	println("计算 2 的 3 次方，如果结果小于 100 就返回结果，否则返回 100")
 	value := pow(2, 3, 100)
 	fmt.Println("value = ", value)
