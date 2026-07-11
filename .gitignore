@@ -1,0 +1,5 @@
+.idea
+.cursor
+.vscode
+*.exe
+*.log
