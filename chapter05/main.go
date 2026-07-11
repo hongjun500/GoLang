@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 func main() {
 	// 数组
 	arrFunc()
@@ -15,5 +19,10 @@ func main() {
 	syncMapFunc()
 
 	mapSliceFunc()
-
+	var out []string
+	for i := 0; i < 10; i++ {
+		//out = append(out, strconv.Itoa(i))
+		out[i] = fmt.Sprintf("%d", i)
+	}
+	fmt.Println(out)
 }
