@@ -4,36 +4,32 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
-	"os/exec"
 )
 
 func main() {
 
-	command := exec.Command("ps -ef|grep java")
-	fmt.Print(command.Output())
-
-	println("计算 2 的 3 次方，如果结果小于 100 就返回结果，否则返回 100")
+	fmt.Println("计算 2 的 3 次方，如果结果小于 100 就返回结果，否则返回 100")
 	value := pow(2, 3, 100)
 	fmt.Println("value = ", value)
 
-	println("for 循环部分-------------------------------------")
-	forfunc()
-
+	log.Println("for 循环部分-------------------------------------")
+	forExample()
 	fmt.Println("switch 语句部分-------------------------------------")
+	switchExample()
+	log.Println("defer 关键字部分-------------------------------------")
+	deferExample()
 
-	println("defer 关键字部分-------------------------------------")
-	b()
-	fmt.Println(" ")
-	fmt.Println(c())
-	println("goto 关键字部分-------------------------------------")
-	gotoFunc()
+	fmt.Println("goto 关键字部分-------------------------------------")
+	gotoExample()
 
+	// CopyFile("README2.md","README.md")
 }
 
 func Sqrt(x int) int {
 	z := 1
-	for x < 10 {
+	for i:=0; i < 10; i++ {
 		// 这里的相除结果因为是 int 取值时会取商,而不是同 float64 类型时取的精确的结果值
 		z -= (z*z - x) / (2 * z)
 	}
@@ -43,7 +39,7 @@ func Sqrt(x int) int {
 // SqrtFloat64 这里的结果会和上面不一样本质上是因为入参类型不同
 func SqrtFloat64(x float64) float64 {
 	z := 1.0
-	for x < 10 {
+	for i:=0; i < 10; i++ {
 		// 这里的相除因为是float会取精确的结果值，而不是同int类型时取的商
 		z -= (z*z - x) / (2 * z)
 	}
@@ -57,9 +53,9 @@ func CopyFile(dstName, srcName string) (written int64, err error) {
 		return
 	}
 	defer func(src *os.File) {
-		err := src.Close()
+		err = src.Close()
 		if err != nil {
-
+			log.Fatalf("close err :%v", err.Error())
 		}
 	}(src)
 
@@ -68,34 +64,12 @@ func CopyFile(dstName, srcName string) (written int64, err error) {
 		return
 	}
 	defer func(dst *os.File) {
-		err := dst.Close()
+		err = dst.Close()
 		if err != nil {
-
+			log.Fatalf("dst.Close() err :%v", err.Error())
 		}
 	}(dst)
 
 	return io.Copy(dst, src)
 }
 
-func A() {
-	i := 0
-	/*defer*/ fmt.Println(i)
-	i++
-	return
-}
-
-func b() {
-	for i := 0; i < 4; i++ {
-		// 延迟打印0
-		// 延迟打印1
-		// 延迟打印2
-		// 延迟打印3
-		defer fmt.Print("延迟打印", i)
-		// 按照先进后出的策略最后结果会是3210
-	}
-}
-
-func c() (i int) {
-	defer func() { i++ }()
-	return 1
-}

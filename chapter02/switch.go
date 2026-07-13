@@ -6,9 +6,12 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"log"
+)
 
-func switchFunc() {
+func switchExample() {
 	// switch 语句 从上向下执行(可以没有小括号，大括号必须)
 	// 同 if 一样可以有短变量声明
 	// 每个 case 结构体后有默认的 break,
@@ -44,5 +47,43 @@ func switchFunc() {
 	*/
 	default:
 		fmt.Printf("%s.\n", lang2)
+	}
+
+	switchMutilDemo()
+	switchTypeDemo()
+}
+
+func switchMutilDemo() {
+	log.Println("switch 表达式匹配多个值的情况----")
+	mutil := []string{"Go", "go", "Golang", "GO"}
+	for _, v := range mutil {
+		switch v {
+		case "Go", "go", "Golang", "GO":
+			fmt.Printf("[%s] in gopls.\n", v)
+		default:
+			fmt.Printf("%s is not in gopls.\n", v)
+		}
+	}
+}
+
+func switchTypeDemo() {
+	log.Println("switch 类型开关--------")
+	var x any
+	x = 42
+	switch v := x.(type) {
+	case int:
+		fmt.Printf("x is an int: %d\n", v)
+	case string:
+		fmt.Printf("x is a string: %s\n", v)
+	default:
+		fmt.Printf("x is of unknown type\n")
+	}
+	var y any
+	y = []string{"Go", "Java", "Python"}
+	switch v := y.(type) {
+	case []string:
+		fmt.Printf("%v is a slice of string\n", y)
+	default:
+		fmt.Printf("%v is of unknown type\n", v)
 	}
 }

@@ -8,7 +8,7 @@ package main
 
 import "fmt"
 
-func gotoFunc() {
+func gotoExample() {
 	i := 0
 HERE:
 	fmt.Println(i) // i = 0 打印出0
