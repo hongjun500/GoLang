@@ -13,7 +13,9 @@ type Vertex struct {
 	X int
 	Y int
 }
-
+// User 演示导出字段与未导出字段
+// Name 首字母大写：可被外部包访问
+// age、sex 首字母小写：仅当前包可访问
 type User struct {
 	Name string
 	age  int
@@ -39,3 +41,11 @@ type CustomSlice []string
 type CustomInChan chan CustomInt
 
 type CustomPointer *CustomInt
+
+type Point struct {
+	X, Y int
+}
+type Circle struct {
+	Point
+	Radius int
+}
