@@ -8,25 +8,26 @@ func main() {
 	str := "hello go"
 	// 将指针 strPointer 指向变量 str 的地址：
 	strPointer := &str
-	println("strPointer:", strPointer)
+	fmt.Println("strPointer:", strPointer)
 
 	var intPointer *int
 	addr := &intPointer
-	println("addr:", addr)
+	fmt.Println("addr:", addr)
 
 	var arrPointer []*[]string
-	println("&arrPointer:", &arrPointer)
+	fmt.Println("&arrPointer:", &arrPointer)
 
+	// ------------------- 未初始化指针 -------------------
 	// 定义一个名为 intParam 且类型为 int 的指针变量
 	var intParam *int
 	// 这里取值会报错,因为 intParam 没有初始化
 	// println("对于声明的 intParam 取值:", *intParam)
-	println("对于声明的 intParam 取地址:", &intParam)
+	fmt.Println("对于声明的 intParam 取地址:", &intParam)
 	intp := 88
 	fmt.Printf("指针 intParam 地址    %x\n", &intParam)
 	fmt.Printf("变量 intp 地址  %x \n", &intp)
 	if intParam != nil {
-		fmt.Printf("%d", *intParam)
+		fmt.Printf("%d \n", *intParam)
 	} else {
 		fmt.Println("指针 intParam 的值是空的")
 
@@ -40,7 +41,7 @@ func main() {
 		}
 	}
 
-	// 指针指向指针示例code
+	// ------------------- 指针指向指针 -------------------
 	a := 1
 	var ptr *int
 	var pptr **int

@@ -1,3 +1,3 @@
-module github.com/hongjun500/GoLang-master/chapter03
+module github.com/hongjun500/GoLang/chapter03
 
-go 1.23
+go 1.26.3
