@@ -6,6 +6,8 @@
 
 package main
 
+import "fmt"
+
 // Teacher 声明老师的结构体
 type Teacher struct {
 	Name      string
@@ -13,8 +15,8 @@ type Teacher struct {
 	Sex       int
 	HasDoWork bool
 	// 特点
-	Feature     []string
-	WorkAddress map[int]Address
+	Feature     []string        // 引用类型：切片
+	WorkAddress map[int]Address // 引用类型：map
 	WorkDay     map[int]string
 }
 
@@ -30,29 +32,40 @@ type Student struct {
 	WorkDay     map[int]string
 }
 
+// Address 地址；longitude/latitude 未导出，仅本包可见
 type Address struct {
 	AddressName string
 	longitude   float64
 	latitude    float64
 }
 
-// Info 接收者为值 Teacher
-// 由于接收者为值 Teacher, 此方法类的改变属性行为只有引用数据类型 WorkAddress 会被改变，其它的基本数据不会改变
+// String 实现 fmt.Stringer 接口：用 %v/%s 打印时会自动调用，让输出更可读，
+// 同时演示"标准库接口的隐式实现"。
+func (t Teacher) String() string {
+	return fmt.Sprintf("Teacher{Name:%q, Age:%d}", t.Name, t.Age)
+}
+func (s *Student) String() string {
+	return fmt.Sprintf("Student{Name:%q, Age:%d}", s.Name, s.Age)
+}
+
+// Info 值接收者：t 是整个 Teacher 的副本
+// - 对基本字段/切片头/map 头的“重新赋值”只改副本，外部不可见
+// - 但通过副本里的 map 头去“写元素”，改的是同一块底层 map，外部可见
 func (t Teacher) Info() {
 	// 改变属性 Name 和 Feature 还有 WorkAddress
-	// fmt.Println("Info方法，改变属性 Name 和 Feature 还有 WorkAddress 的值")
-	t.Name = "改变了姓名的" + t.Name
-	t.Age = 2 * t.Age
-	t.Sex = 2 * t.Sex
+	t.Name = "改变了姓名的" + t.Name // 只改副本，外部不可见
+	t.Age = 2 * t.Age          // 只改副本
+	t.Sex = 2 * t.Sex          // 只改副本
 	if t.HasDoWork {
-		t.HasDoWork = false
+		t.HasDoWork = false // 只改副本
 	} else {
-		t.HasDoWork = true
+		t.HasDoWork = true // 只改副本
 	}
-	t.Feature = []string{"听歌", "看书"}
+	t.Feature = []string{"听歌", "看书"} // 重新赋值切片头，外部不可见
 	if t.WorkAddress == nil {
 		t.WorkAddress = make(map[int]Address)
 	}
+	// 往同一底层 map 写元素，外部可见
 	t.WorkAddress[1] = Address{
 		AddressName: "游泳池",
 		longitude:   11111,
@@ -69,17 +82,16 @@ func (t Teacher) Info() {
 		3: "三节课" + "3",
 		5: "一节课" + "5",
 	}
-	// fmt.Printf("teacher.Info 方法执行完毕 %v", t)
 }
 
-// Info 接收者为指针 *Student
+// Info 指针接收者 *Student
 // 由于接收者为指针 *Student, 此方法内的改变会对其对应原有的属性改变
+// 指针接收者：s 指向原对象，所有修改都直接作用于原对象，外部全部可见。
 func (s *Student) Info() {
 	s.Name = "改变了姓名的" + s.Name
 	s.Age = 223 * 2
 	s.Sex = 1000 * 2
 	s.HasDoWork = true
-	s.Feature = []string{"听歌", "看书"}
 	s.Feature = []string{"听歌", "看书"}
 	s.WorkAddress = map[int][]string{
 		1: {
@@ -101,6 +113,7 @@ func (s *Student) Info() {
 	// fmt.Printf("student.Info 方法执行完毕 %v", *s)
 }
 
+// init 在 main 之前自动执行，准备演示数据
 func init() {
 
 	teacher = Teacher{
@@ -127,6 +140,7 @@ func init() {
 			5: "两节课",
 		},
 	}
+	// 注意：Student 用指针接收者实现 Info，因此必须存 *Student
 	student = &Student{
 		Name:      "李青学生",
 		Age:       18,
