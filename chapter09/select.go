@@ -2,24 +2,24 @@
 // @date 2023/8/8 14:58
 // @tool ThinkPadX1隐士
 // Created with 2022.2.Goland
-// Description:
+// Description:  select 多路复用（斐波那契生成器）
 
 package main
 
-import "time"
+import "fmt"
 
 func selectCh(ch, quit chan int) {
 	go func() {
-		for i := 0; i < 2; i++ {
+		for i := 0; i < 10; i++ {
 			// 从通道 sCh 中接收数据，对应的 case 语句不再阻塞
-			println(<-ch)
+			fmt.Println(<-ch)
 		}
 
-		quit <- 0
+		quit <- 0 // 通知生产端退出
 	}()
 
-	x, y := 99, 1
-	time.Tick(100 * time.Millisecond)
+	// 用 select 同时处理“发送下一个斐波那契数”和“接收退出通知”两件事
+	x, y := 0, 1
 	for {
 		select {
 		// 检查通道 ch 是否可以进行发送数据
@@ -29,7 +29,7 @@ func selectCh(ch, quit chan int) {
 		// 同理，检查通道 ch 是否可以进行接收数据
 		// 如果通道没有发送数据，就会阻塞
 		case <-quit:
-			println("quit")
+			fmt.Println("quit")
 			return
 		}
 	}
