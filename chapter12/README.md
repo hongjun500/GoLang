@@ -49,7 +49,7 @@ GODEBUG=gctrace=1 go run .   # 每次 GC 打印一行统计
 go test -bench=. -benchmem .                          # 先看哪段慢/分配多
 go test -bench=BenchmarkConcatPlus -cpuprofile=cpu.out .
 go tool pprof cpu.out            # 交互式：top / list 函数名 / web
-go tool pprof -http=:8080 cpu.out  # 浏览器看火焰图
+go tool pprof -http=:8081 cpu.out  # 浏览器看火焰图
 ```
 
 **方式二 · 长跑服务在线剖析**
