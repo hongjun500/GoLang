@@ -20,6 +20,12 @@
 
 ## [chapter10](./chapter10/README.md)  反射
 
+## [chapter11](./chapter11/README.md)  错误处理
+
+## [chapter12](./chapter12/README.md)  性能诊断与调优
+
+## [chapter13](./chapter13/README.md)  测试
+
 ## [database-example](./database-example/README.md)  访问关系型数据库 `MySQL`
 
 ## [design-pattern](./design-pattern/README.md)  设计模式
